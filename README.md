@@ -47,3 +47,28 @@
 | How does the game handle score updates, and which components are involved?                            | Score updates are handled in the Model (e.g., `MySnake` and `Food` classes) and are triggered when the snake eats food. The Controller manages this interaction, updating both the Model and the View to display the updated score. |
 </details>
 
+<details>
+<summary>Class Descriptions</summary>
+
+###  `Class`: MyFrame
+#### `Description`: Represents the game window/frame.
+
+
+#### Key Methods and Objects:
+- `loadFrame`: Initializes and configures the game frame.
+- `MyThread` inner class: Continuously repaints the frame.
+- `keyTyped`, `keyPressed`, `keyReleased`: Methods for KeyListener interface.
+- `MySnake` class: Represents the snake object in the game.
+- `SnakeObject` class: Abstract class representing a game object.
+
+#### Comments and Suggestions:
+- The `loadFrame` method could benefit from . Breaking it down into smaller methods will improve readability.
+- `MyThread` logic could be abstracted into a separate class for better organization.
+- `MySnake` clas.
+- Add comments to describe the purpose of major methods and variables.
+-  Swap magic numbers in the code for constants.(e.g., `870`, `560`, `30`).
+
+###  `Redundant Classes`: Main and Paddle
+
+
+</details>
