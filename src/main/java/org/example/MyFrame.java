@@ -35,7 +35,7 @@ public class MyFrame extends JPanel implements KeyListener
 	public void loadFrame()
 	{
 		/*
-		 * Komið í veg fyrir að myndin blikki.
+		 * Prevent the image from flashing.
 		 */
 		this.setDoubleBuffered(true);
 		jFrame.add(this);
@@ -44,6 +44,7 @@ public class MyFrame extends JPanel implements KeyListener
 		jFrame.setTitle("Snakee Yipee");
 		jFrame.setSize(870, 560);
 		jFrame.setLocationRelativeTo(null);
+
 		jFrame.addWindowListener(new WindowAdapter()// loka
 		{
 			@Override
@@ -57,6 +58,22 @@ public class MyFrame extends JPanel implements KeyListener
 
 		new MyThread().start();
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
+
 	class MyThread extends Thread
 	{
 		@Override
@@ -77,26 +94,8 @@ public class MyFrame extends JPanel implements KeyListener
 		}
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
 
 	public static class MySnake extends SnakeObject implements movable
 	{
@@ -122,8 +121,8 @@ public class MyFrame extends JPanel implements KeyListener
 			this.w = i.getWidth(null);
 			this.h = i.getHeight(null);
 
-			this.speed_XY = 5;
-			this.length = 1;
+			this.speed_XY = 50;
+			this.length = 10;
 
 			/*
 			 * Attention : ?
