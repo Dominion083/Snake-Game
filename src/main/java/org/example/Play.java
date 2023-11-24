@@ -14,7 +14,7 @@ import java.awt.event.KeyEvent;
  * @version Ekki viss
  */ 
 
-public class Play extends MyFrame
+public class Play extends GameFrame
 {
 
 	private static final long serialVersionUID = -3641221053272056036L;
@@ -22,8 +22,8 @@ public class Play extends MyFrame
 	public MySnake mySnake = new MySnake(100, 100);// x , y
 	public Food food = new Food();
 
-	public Image background = ImageUtil.images.get("UI-background");
-	public Image fail = ImageUtil.images.get("game-scene-01");
+	public Image background = ImageLoader.images.get("UI-background");
+	public Image fail = ImageLoader.images.get("game-scene-01");
 
 	@Override
 	public void keyPressed(KeyEvent e)
@@ -38,7 +38,7 @@ public class Play extends MyFrame
 		super.paint(g);
 		g.drawImage(background, 0, 0, null);
 
-		// Ákveða stöðu leiksins.
+		// "Decide the position of the game."
 		if (mySnake.l)
 		{
 			mySnake.draw(g);
@@ -70,22 +70,5 @@ public class Play extends MyFrame
 		MusicPlayer.getMusicPlay("src/main/resources/music/frogger.mp3");
 
 	}
-/*	
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame();
-		// frame.setSize(400,600);
-		frame.setBounds(450, 200, 920, 600);
-		// frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		SnakePanel panel = new SnakePanel();
-		frame.add(panel);
-
-		frame.setVisible(true);
-
-		// Play the background music.
-		MusicPlayer.getMusicPlay("resource\\music\\background.mp3");
-	} 
-*/
 }

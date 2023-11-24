@@ -21,15 +21,15 @@ import javax.swing.JPanel;
  */ 
 
 
-public class MyFrame extends JPanel implements KeyListener
+public class GameFrame extends JPanel implements KeyListener
 {
 	private static final long serialVersionUID = -3149926831770554380L;
 
 	public JFrame jFrame = new JFrame();
 
-	public MyFrame()
+	public GameFrame()
 	{
-		jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyFrame.class.getResource("/images/snake-logo.png")));
+		jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/snake-logo.png")));
 	}
 
 	public void loadFrame()
@@ -105,7 +105,7 @@ public class MyFrame extends JPanel implements KeyListener
 		private int num; // ?
 		public int score = 0;
 
-		private static final BufferedImage IMG_SNAKE_HEAD = (BufferedImage) ImageUtil.images.get("snake-head-right");
+		private static final BufferedImage IMG_SNAKE_HEAD = (BufferedImage) ImageLoader.images.get("snake-head-right");
 
 		public static List<Point> bodyPoints = new LinkedList<>();
 
@@ -117,12 +117,12 @@ public class MyFrame extends JPanel implements KeyListener
 			this.l = true;
 			this.x = x;
 			this.y = y;
-			this.i = ImageUtil.images.get("snake-body");
+			this.i = ImageLoader.images.get("snake-body");
 			this.w = i.getWidth(null);
 			this.h = i.getHeight(null);
 
-			this.speed_XY = 50;
-			this.length = 10;
+			this.speed_XY = 5;
+			this.length = 1;
 
 			/*
 			 * Attention : ?
@@ -144,7 +144,7 @@ public class MyFrame extends JPanel implements KeyListener
 
 		public void keyPressed(KeyEvent e)
 		{
-			// athugaðu lykilinn
+			//"Check the key."
 			switch (e.getKeyCode())
 			{
 			case KeyEvent.VK_UP:

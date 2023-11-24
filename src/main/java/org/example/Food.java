@@ -2,10 +2,8 @@ package org.example;
 
 import java.awt.Graphics;
 import java.util.Random;
-import java.awt.Graphics2D;
-import java.awt.Image;
 
-public class Food extends MyFrame.SnakeObject
+public class Food extends GameFrame.SnakeObject
 {
 
 	private static final long serialVersionUID = -3641221053272056036L;
@@ -15,7 +13,7 @@ public class Food extends MyFrame.SnakeObject
 	public Food()	{
 		this.l = true;
 
-		this.i = ImageUtil.images.get(String.valueOf(new Random().nextInt(10)));
+		this.i = ImageLoader.images.get(String.valueOf(new Random().nextInt(10)));
 
 		this.w = i.getWidth(null);
 		this.h = i.getHeight(null);
@@ -24,7 +22,7 @@ public class Food extends MyFrame.SnakeObject
 		this.y = (int) (Math.random() * (560 - h - 40));
 	}
 
-	public void eaten(MyFrame.MySnake mySnake)	{
+	public void eaten(GameFrame.MySnake mySnake)	{
 
 		if (mySnake.getRectangle().intersects(this.getRectangle()) && l && mySnake.l)		{
 			this.l = false;

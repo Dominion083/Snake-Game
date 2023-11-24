@@ -4,7 +4,7 @@ import java.awt.Image;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ImageUtil
+public class ImageLoader
 {
 	public static Map<String, Image> images = new HashMap<>();
 
