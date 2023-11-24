@@ -50,7 +50,10 @@
 <details>
 <summary>Class Descriptions</summary>
 
-###  `Class`: MyFrame
+###  `Redundant Classes`: Main and Paddle
+
+
+###  `1.Class`: MyFrame
 #### `Description`: Represents the game window/frame.
 
 
@@ -68,7 +71,31 @@
 - Add comments to describe the purpose of major methods and variables.
 -  Swap magic numbers in the code for constants.(e.g., `870`, `560`, `30`).
 
-###  `Redundant Classes`: Main and Paddle
+###  `2.Class`: Food
+#### `Description`: Represents the food that the snake can eat.
 
+
+**Methods and Objects:**
+- `Constructor` initializes food with a random type and position.
+- `eaten` method checks if the snake has eaten the food and updates the score.
+- `draw` method draws the food on the game frame.
+
+**Comments and Suggestions:**
+- Comments needed to describe further the purpose of major methods
+- The constructor logic for initializing food could be encapsulated in a separate method for clarity.
+- Swap magic numbers in the code for constants.
+- Scoring as a multiple of 512 might be reduced to a round figure.
+
+
+### `Interface` :Movable
+#### `Description`: Defines the interface for game objects that can be moved.
+
+
+**Key Methods and Objects:**
+- `move`: Represents the basic movement action for a movable object.
+
+**Comments and Suggestions:**
+- Comments needed to describe further the purpose of  methods in the interface.
+- Consider grouping related functions in other code in interface. 
 
 </details>
