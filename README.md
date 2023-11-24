@@ -50,10 +50,10 @@
 <details>
 <summary>Class Descriptions</summary>
 
-###  `Redundant Classes`: Main and Paddle
+###  `1-Redundant Classes`: Main and Paddle
 
 
-###  `1.Class`: MyFrame
+###  `2-Class`: MyFrame
 #### `Description`: Represents the game window/frame.
 
 
@@ -71,7 +71,7 @@
 - Add comments to describe the purpose of major methods and variables.
 -  Swap magic numbers in the code for constants.(e.g., `870`, `560`, `30`).
 
-###  `2.Class`: Food
+###  `3.Class`: Food
 #### `Description`: Represents the food that the snake can eat.
 
 
@@ -87,7 +87,7 @@
 - Scoring as a multiple of 512 might be reduced to a round figure.
 
 
-### `Interface` :Movable
+### `4-Interface` :Movable
 #### `Description`: Defines the interface for game objects that can be moved.
 
 
@@ -97,5 +97,37 @@
 **Comments and Suggestions:**
 - Comments needed to describe further the purpose of  methods in the interface.
 - Consider grouping related functions in other code in interface. 
+
+Certainly! Here's the information for `GameUtil` and `ImageUtil` classes in a README.md format:
+
+### `5-Class` :GameUtil
+#### `Description`:Changes position of images through rotation.
+
+**Methods and Objects:**
+- `getImage`: Loads an image from the specified path.
+- `rotateImage`: Rotates an image by a specified degree.
+
+**Comments and Suggestions:**
+- Consider providing more details in the comments regarding the rotation logic in `rotateImage`.
+- Appropirate Error Handling in getting path through`getImage` method.
+- Swap magic numbers in the code for constants.
+- Singleton pattern can be applied. This ensures that this will 
+   only have one instance and also ensure global access.
+---
+
+### `6-Class` :ImageUtil
+#### `Description`:Provides methods for managing and storing images.
+
+**Methods and Objects:**
+- `images`: Map contains image resources used in the game.
+- Static block initializes image resources for snake, food, and background.
+
+**Comments and Suggestions:**
+- Add comments to describe the purpose of major methods and variables.
+- Provide comments explaining the logic in the static block for initializing image resources.
+- Singleton Pattern can also be applied as stated above.
+
+
+
 
 </details>
