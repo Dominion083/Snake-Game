@@ -203,7 +203,7 @@ public class GameFrame extends JPanel implements KeyListener
 
 		public void move()
 		{
-			// láta kvikindið hreyfa sig
+			// To make the character move."
 			if (up)
 			{
 				y -= speed_XY;

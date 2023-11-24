@@ -53,6 +53,8 @@ public class Play extends GameFrame
 		} else
 		{
 			g.drawImage(fail, 0, 0, null);
+		//	System.exit(0);
+
 		}
 		drawScore(g);
 	}

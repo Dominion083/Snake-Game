@@ -46,3 +46,4 @@
 | What benefits does the MVC pattern bring to the design and maintenance of the  game code?             | The MVC pattern provides a clear separation of concerns, making the code modular and easier to maintain. Changes in one component, such as updating game logic (Model), won't directly impact the visual representation (View).     |
 | How does the game handle score updates, and which components are involved?                            | Score updates are handled in the Model (e.g., `MySnake` and `Food` classes) and are triggered when the snake eats food. The Controller manages this interaction, updating both the Model and the View to display the updated score. |
 </details>
+
