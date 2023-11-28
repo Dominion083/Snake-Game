@@ -99,7 +99,7 @@ public class GameFrame extends JPanel implements KeyListener
 
 	public static class MySnake extends SnakeObject implements movable
 	{
-		// Leikjabreytan.
+		//  "Game Object".
 		private int speed_XY;
 		private int length;
 		private int num; // ?

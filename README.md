@@ -5,12 +5,12 @@
 
 ### Movement Logic:
 
-| **Question**                                               | **Answer**                                                                              |
-|------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| Where is the direction of the snake set based on user input?| In the `keyPressed` method of the `MySnake` class.                                       |
-| How is the snake moved in the chosen direction?             | The movement is implemented in the `move` method of the `MySnake` class.                  |
-| What triggers the movement of the snake?                   | The movement of the snake is triggered in the `draw` method of the `MySnake` class.       |
-| Is there any condition for stopping the movement of the snake? | Yes, if the snake goes out of bounds (hits the walls), its `l` flag is set to false.    |
+| **Question**                                                   | **Answer**                                                                           |
+|----------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| Where is the direction of the snake set based on user input?   | In the `keyPressed` method of the `MySnake` class.                                   |
+| How is the snake moved in the chosen direction?                | The movement is implemented in the `move` method of the `MySnake` class.             |
+| What triggers the movement of the snake?                       | The movement of the snake is triggered in the `draw` method of the `MySnake` class.  |
+| Is there any condition for stopping the movement of the snake? | Yes, if the snake goes out of bounds (hits the walls), its `l` flag is set to false. |
 
 ### Scoring Logic:
 
@@ -180,7 +180,7 @@
 
 ## IntelliJ Generated Class Diagram:![Generated Class diagram](/Documentation/AutoClassDiagram.png)
 
-## My Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiag.png)
+## My Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiagr.png)
 
 ## My Original Activity Diagram:![Original Activity Diagram](/Documentation/OriginalActivityDIagram.png)
 
@@ -193,13 +193,13 @@
 <details>
 <summary> Bugs and Fixes</summary>
 
-| Bugs                                                      | Fixes                                                                                      |
-|-----------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| When the snake comes in contact with the Score sign, it ends | Implement proper collision detection for the Score sign.                                  |
-| Any rapid movement at the beginning causes the snake to run in itself | Adjust the initialization and movement logic to prevent the snake from colliding with itself. |
-| The end game screen isn't the same size as the GameFrame    | Ensure that the end game screen size matches the GameFrame size for a consistent user experience. |
-| Hardcoded algorithms for out-of-bounds checking             | Refactor the out-of-bounds checking with more flexible and dynamic algorithms.              |
-| Unstructured code, comments are not detailed                | Refactor the code structure, add detailed comments explaining major sections and logic.     |
-| Classes are doing too much and not following coding conventions | Refactor the code to adhere to coding conventions, and consider breaking down classes into smaller, focused units. |
+| Bugs                                                                  | Fixes                                                                                                              |
+|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| When the snake comes in contact with the Score sign, it ends          | Implement proper collision detection for the Score sign.                                                           |
+| Any rapid movement at the beginning causes the snake to run in itself | Adjust the initialization and movement logic to prevent the snake from colliding with itself.                      |
+| The end game screen isn't the same size as the GameFrame              | Ensure that the end game screen size matches the GameFrame size for a consistent user experience.                  |
+| Hardcoded algorithms for out-of-bounds checking                       | Refactor the out-of-bounds checking with more flexible and dynamic algorithms.                                     |
+| Unstructured code, comments are not detailed                          | Refactor the code structure, add detailed comments explaining major sections and logic.                            |
+| Classes are doing too much and not following coding conventions       | Refactor the code to adhere to coding conventions, and consider breaking down classes into smaller, focused units. |
 
 </details>
