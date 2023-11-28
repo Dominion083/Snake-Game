@@ -175,3 +175,18 @@
 - Other methods related to this Class but scattered around code can be put hear.
 - Swap magic numbers in the code for constants.
 </details>
+
+<details>
+<summary>UML Diagrams /Diagram Analysis</summary>
+
+### IntelliJ Generated Class Diagram:![Use case diagram](/documentation/AutoClassDiagram.png)
+
+### My Original Class Diagram:![Use case diagram](/documentation/InitialClassDiag.png)
+
+### My Original Activity Diagram:![Use case diagram](/documentation/OriginalActivityDIagram.png)
+
+### MVC Initial Class Diagram:![Use case diagram](/documentation/PossibleClassDiag.png)
+
+### Multiplayer UseCase Diagram:![Use case diagram](/documentation/Use-Case.png)
+
+</details>
