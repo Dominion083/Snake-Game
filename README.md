@@ -178,14 +178,14 @@
 <details>
 <summary>UML Diagrams /Diagram Analysis</summary>
 
-### IntelliJ Generated Class Diagram:![Generated Class diagram](/Documentation/AutoClassDiagram.png)
+## IntelliJ Generated Class Diagram:![Generated Class diagram](/Documentation/AutoClassDiagram.png)
 
-### My Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiag.png)
+## My Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiag.png)
 
-### My Original Activity Diagram:![Original Activity Diagram](/Documentation/OriginalActivityDIagram.png)
+## My Original Activity Diagram:![Original Activity Diagram](/Documentation/OriginalActivityDIagram.png)
 
-### MVC Initial Class Diagram:![MVC diagram](/Documentation/PossibleClassDiag.png)
+## MVC Initial Class Diagram:![MVC diagram](/Documentation/PossibleClassDiag.png)
 
-### Multiplayer UseCase Diagram:![Use case diagram](/Documentation/Use-Case.png)
+## Multiplayer UseCase Diagram:![Use case diagram](/Documentation/Use-Case.png)
 
 </details>
