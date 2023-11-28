@@ -111,7 +111,6 @@
 - Swap magic numbers in the code for constants.
 - Singleton pattern can be applied. This ensures that this will 
    only have one instance and also ensure global access.
----
 
 ### `6-Class` :ImageUtil
 #### `Description`:Provides methods for managing and storing images.
