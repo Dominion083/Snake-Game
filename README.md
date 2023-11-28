@@ -189,3 +189,15 @@
 ## Multiplayer UseCase Diagram:![Use case diagram](/Documentation/Use-Case.png)
 
 </details>
+
+<details>
+<summary> Bugs and Fixes</summary>
+
+- When the snake comes in contact with the Score sign; it ends.
+- Any rapid movement at the beginning of the game causes the snake to run in itself
+- The end game screen isn't the same size as the GameFrame.
+- For the out-of-bounds checking; there are a lot of hardcoded algorithms.
+- The code is unstructured, comments are not detailed.
+- Classes are doing too much and not following coding conventions.
+
+</details>
