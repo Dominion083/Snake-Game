@@ -98,8 +98,6 @@
 - Comments needed to describe further the purpose of  methods in the interface.
 - Consider grouping related functions in other code in interface. 
 
-Certainly! Here's the information for `GameUtil` and `ImageUtil` classes in a README.md format:
-
 ### `5-Class` :GameUtil
 #### `Description`:Changes position of images through rotation.
 
@@ -127,7 +125,53 @@ Certainly! Here's the information for `GameUtil` and `ImageUtil` classes in a RE
 - Provide comments explaining the logic in the static block for initializing image resources.
 - Singleton Pattern can also be applied as stated above.
 
+### `7-Class` :MusicPlayer
+#### Description`:Manages background music for the games.
+
+**Methods and Objects:**
+- Constructor: Takes the filename of the music and initializes.
+- `play`: Starts a new thread to play the background music.
+
+**Comments and Suggestions:**
+- Adding more detailed comments to major methods to describe their purpose.
+- Evaluate if the use of magic numbers in the code can be replaced with named constants.
+- Swap magic numbers in the code for constants.
+
+### `8-Class` :Food
+#### Description`:Represents the food that the snake can eat.
+
+**Methods and Objects:**
+- Constructor: Initializes food with a random type and position.
+- `eaten`: Checks if the snake has eaten the food and updates the score.
+- `draw`: Draws the food on the game frame.
+
+**Comments and Suggestions:**
+- Consider adding comments to major methods to describe their purpose.
+- Seperate method to encapsulate constructor logic that initializes food class for clarity.
+- Algorithm and logic used in the eaten method can be improved.
+
+### `8-Class` :Play
+#### Description`:Manages and represents the game state, including the snake, food, and game visuals.
+
+**Methods and Objects:**
+- `keyPressed`: Handles key events and forwards them to the snake.
+- `paint`: Manages the rendering of game elements, including the snake, food, and background.
+- `drawScore`: Draws the player's score on the game frame.
+
+**Comments and Suggestions**:
+- Adding detailed comments to major methods for maintainability.
+- The logic for handling key events could be encapsulated into a separate method for better readability.
 
 
+### `9-Class` : Snake
+#### Description`: Represents the control of the snake's movement.
 
+**Methods and Objects**:
+- `moving`: A static variable representing the snake's movement state.
+- `move`: A static method that updates the snake's movement state based on the provided parameter.
+- `stop`: A static method that stops the snake's movement.
+
+**Comments and Suggestions**:
+- Other methods related to this Class but scattered around code can be put hear.
+- Swap magic numbers in the code for constants.
 </details>

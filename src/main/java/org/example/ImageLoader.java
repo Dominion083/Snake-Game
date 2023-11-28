@@ -29,7 +29,7 @@ public class ImageLoader
 		images.put("12", GameUtil.getImage("/images/food-pear.png"));
 		images.put("13", GameUtil.getImage("/images/food-orange.png"));
 		images.put("14", GameUtil.getImage("/images/food-pineapple.png"));
-		images.put("15", GameUtil.getImage("/images/food-strawberry.png"));
+		images.put("15",GameUtil.getImage("/images/food-strawberry.png"));
 		images.put("16", GameUtil.getImage("/images/food-watermelon.png"));
 		images.put("UI-background", GameUtil.getImage("/images/UI-background.png"));
 		images.put("game-scene-01", GameUtil.getImage("/images/game-scene-01.jpg"));

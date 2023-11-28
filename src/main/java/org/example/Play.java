@@ -66,11 +66,6 @@ public class Play extends GameFrame
 		g.drawString("SCORE : " + mySnake.score, 20, 40);
 	}
 
-	public static void main(String[] args)
-	{
-		new Play().loadFrame();
-		MusicPlayer.getMusicPlay("src/main/resources/music/frogger.mp3");
 
-	}
 
 }

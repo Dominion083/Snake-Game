@@ -2,19 +2,17 @@ package org.example;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.util.Random;
-import java.awt.Graphics2D;
 
 import javazoom.jl.player.Player;
 
 public class MusicPlayer extends Thread
 {
-	private String filename;
-	public Player player;
+	private String m_filename;
+	public Player m_player;
 
 	public MusicPlayer(String filename)
 	{
-		this.filename = filename;
+		this.m_filename = filename;
 	}
 
 	public void play()
@@ -28,8 +26,8 @@ public class MusicPlayer extends Thread
 				try
 				{
 					//BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(filename));
-					player = new Player(new BufferedInputStream(new FileInputStream(filename)));
-					player.play();
+					m_player = new Player(new BufferedInputStream(new FileInputStream(m_filename)));
+					m_player.play();
 
 				} catch (Exception e)
 				{
