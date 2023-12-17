@@ -39,9 +39,6 @@ public class GameImageLoader {
 		IMAGES.put("game-scene-01", GameUtil.getImage("/images/game-scene-01.jpg"));
 	}
 
-	private static Image loadImage(String path) {
-		return new Image(GameImageLoader.class.getResourceAsStream(path));
-	}
 
 	public static Map<String, Image> getImages() {
 		return Collections.unmodifiableMap(IMAGES);
