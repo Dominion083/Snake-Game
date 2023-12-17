@@ -56,7 +56,7 @@ public class MusicPlayer {
 	}
 
 	// Optionally, if you need to change the track
-	public void setTrack(String filename) {
+	public void setMusic(String filename) {
 		try {
 			Media media = new Media(getClass().getResource(filename).toURI().toString());
 			mediaPlayer.stop();

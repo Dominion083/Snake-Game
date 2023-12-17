@@ -70,7 +70,7 @@ public class Play extends GameFrame
 	public void begin()
 	{
 		new Play().loadFrame();
-		MusicPlayer.getMusicPlay("src/example/frogger.mp3");
+		new MusicPlayer("src/example/frogger.mp3",true);
 
 	}
 }

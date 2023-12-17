@@ -155,7 +155,7 @@ public class GameFrame extends JPanel implements KeyListener
 					left = false;
 					right = false;
 
-					newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, -90);
+					newImgSnakeHead = (BufferedImage) GameImageUtil.rotateImage(IMG_SNAKE_HEAD, -90);
 				}
 				break;
 
@@ -167,7 +167,7 @@ public class GameFrame extends JPanel implements KeyListener
 					left = false;
 					right = false;
 
-					newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, 90);
+					newImgSnakeHead = (BufferedImage) GameImageUtil.rotateImage(IMG_SNAKE_HEAD, 90);
 				}
 				break;
 
@@ -179,7 +179,7 @@ public class GameFrame extends JPanel implements KeyListener
 					left = true;
 					right = false;
 
-					newImgSnakeHead = (BufferedImage) GameUtil.rotateImage(IMG_SNAKE_HEAD, -180);
+					newImgSnakeHead = (BufferedImage) GameImageUtil.rotateImage(IMG_SNAKE_HEAD, -180);
 
 				}
 				break;

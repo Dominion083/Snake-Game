@@ -8,14 +8,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.net.URL;
 
-public final class GameUtil {
+public final class GameImageUtil {
 
-	private GameUtil() {
+	private GameImageUtil() {
 		// Private constructor to prevent instantiation
 	}
 
 	public static Image getImage(String imagePath) {
-		URL url = GameUtil.class.getResource(imagePath);
+		URL url = GameImageUtil.class.getResource(imagePath);
 		try {
 			BufferedImage bufferedImage = ImageIO.read(url);
 			return SwingFXUtils.toFXImage(bufferedImage, null);
