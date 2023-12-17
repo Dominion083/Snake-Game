@@ -20,9 +20,9 @@ public class Play extends GameFrame
 	private static final long serialVersionUID = -3641221053272056036L;
 
 	public MySnake mySnake = new MySnake(100, 100);// x , y
-	public Food food = new Food();
+	public FoodModel foodModel = new FoodModel();
 
-	public Image background = ImageLoader.images.get("UI-background");
+	public Image background = GameImageLoader.getImages().get("UI-background");
 	public Image fail = ImageLoader.images.get("game-scene-01");
 
 	@Override
@@ -42,13 +42,13 @@ public class Play extends GameFrame
 		if (mySnake.l)
 		{
 			mySnake.draw(g);
-			if (food.l)
+			if (foodModel.l)
 			{
-				food.draw(g);
-				food.eaten(mySnake);
+				foodModel.draw(g);
+				foodModel.eaten(mySnake);
 			} else
 			{
-				food = new Food();
+				foodModel = new FoodModel();
 			}
 		} else
 		{
