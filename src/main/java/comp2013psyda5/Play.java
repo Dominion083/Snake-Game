@@ -7,12 +7,12 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 
 /**
- * 
+ *
  * @Project Snakee
  * @Description Spilaðu leikinn
  * @Author Sigurður Sigurðardóttir
  * @version Ekki viss
- */ 
+ */
 
 public class Play extends GameFrame
 {
@@ -53,7 +53,7 @@ public class Play extends GameFrame
 		} else
 		{
 			g.drawImage(fail, 0, 0, null);
-		//	System.exit(0);
+			//	System.exit(0);
 
 		}
 		drawScore(g);
