@@ -13,8 +13,7 @@ module com.example.Comp2013psyda5 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
-
-
+    requires java.logging;
 
 
     opens comp2013psyda5 to javafx.fxml;

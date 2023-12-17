@@ -1,47 +1,71 @@
 package comp2013psyda5;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import javazoom.jl.player.Player;
+public class MusicPlayer {
+	private static final Logger LOGGER = Logger.getLogger(MusicPlayer.class.getName());
 
-public class MusicPlayer extends Thread
-{
-	private String m_filename;
-	public Player m_player;
+	private String filename;
+	private MediaPlayer mediaPlayer;
 
-	public MusicPlayer(String filename)
-	{
-		this.m_filename = filename;
-	}
+	public MusicPlayer(String filename, boolean loop) {
+		this.filename = filename;
+		try {
+			Media media = new Media(getClass().getResource(filename).toURI().toString());
+			mediaPlayer = new MediaPlayer(media);
+			mediaPlayer.setAutoPlay(true);
 
-	public void play()
-	{
-		new Thread()
-		{
-			@Override
-			public void run()
-			{
-				super.run();
-				try
-				{
-					//BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(filename));
-					m_player = new Player(new BufferedInputStream(new FileInputStream(m_filename)));
-					m_player.play();
-
-				} catch (Exception e)
-				{
-					System.out.println(e);
-				}
+			if (loop) {
+				mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
 			}
-		}.start();
+		} catch (URISyntaxException e) {
+			LOGGER.log(Level.SEVERE, "Could not find file: " + filename, e);
+		} catch (NullPointerException e) {
+			LOGGER.log(Level.SEVERE, "File URL is null for: " + filename, e);
+		}
 	}
 
+	public void play() {
+		if (mediaPlayer != null) {
+			mediaPlayer.play();
+		} else {
+			LOGGER.log(Level.SEVERE, "MediaPlayer is not initialized");
+		}
+	}
 
+	public void pause() {
+		if (mediaPlayer != null) {
+			mediaPlayer.pause();
+		} else {
+			LOGGER.log(Level.SEVERE, "MediaPlayer is not initialized");
+		}
+	}
 
-	public static void getMusicPlay(String filename)
-	{
-		MusicPlayer musicPlayer = new MusicPlayer(filename);
-		musicPlayer.play();
+	public void stop() {
+		if (mediaPlayer != null) {
+			mediaPlayer.stop();
+			mediaPlayer.dispose();
+		} else {
+			LOGGER.log(Level.SEVERE, "MediaPlayer is not initialized");
+		}
+	}
+
+	// Optionally, if you need to change the track
+	public void setTrack(String filename) {
+		try {
+			Media media = new Media(getClass().getResource(filename).toURI().toString());
+			mediaPlayer.stop();
+			mediaPlayer.dispose();
+			mediaPlayer = new MediaPlayer(media);
+		} catch (URISyntaxException e) {
+			LOGGER.log(Level.SEVERE, "Could not find file: " + filename, e);
+		} catch (NullPointerException e) {
+			LOGGER.log(Level.SEVERE, "File URL is null for: " + filename, e);
+		}
 	}
 }
