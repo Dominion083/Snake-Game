@@ -26,7 +26,7 @@ public class Start {
     public static void main(String[] args)
     {
         new Play().loadFrame();
-        MusicPlayer.getMusicPlay("src/main/resources/music/frogger.mp3");
+        new MusicPlayer("src/example/frogger.mp3",true);
 
     }
 
