@@ -117,9 +117,9 @@ public class GameFrame extends JPanel implements KeyListener
 			this.l = true;
 			this.x = x;
 			this.y = y;
-			this.i = ImageLoader.images.get("snake-body");
-			this.w = i.getWidth(null);
-			this.h = i.getHeight(null);
+			this.i = GameImageLoader.getImages().get("snake-body");
+			this.w = (int) i.getWidth(null);
+			this.h = (int) i.getHeight(null);
 
 			this.speed_XY = 5;
 			this.length = 1;
