@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -105,11 +105,11 @@ public class GameFrame extends JPanel implements KeyListener
 		private int num; // ?
 		public int score = 0;
 
-		private static final BufferedImage IMG_SNAKE_HEAD = (BufferedImage) ImageLoader.images.get("snake-head-right");
+		private static final Image IMG_SNAKE_HEAD = GameImageLoader.getImages().get("snake-head-right");
 
 		public static List<Point> bodyPoints = new LinkedList<>();
 
-		private static BufferedImage newImgSnakeHead;
+		private static Image newImgSnakeHead;
 		boolean up, down, left, right = true;
 
 		public MySnake(int x, int y)
