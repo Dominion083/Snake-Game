@@ -16,16 +16,15 @@ public class MusicPlayer {
 	public MusicPlayer(String filename, boolean loop) {
 		this.filename = filename;
 		try {
-			Media media = new Media(getClass().getResource(filename).toURI().toString());
+			String mediaPath = getClass().getResource(filename).toExternalForm();
+			Media media = new Media(mediaPath);
 			mediaPlayer = new MediaPlayer(media);
 			mediaPlayer.setAutoPlay(true);
 
 			if (loop) {
 				mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
 			}
-		} catch (URISyntaxException e) {
-			LOGGER.log(Level.SEVERE, "Could not find file: " + filename, e);
-		} catch (NullPointerException e) {
+		}  catch (NullPointerException e) {
 			LOGGER.log(Level.SEVERE, "File URL is null for: " + filename, e);
 		}
 	}
