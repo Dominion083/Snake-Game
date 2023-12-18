@@ -1,76 +1,80 @@
 package comp2013psyda5;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.KeyEvent;
+import javafx.animation.AnimationTimer;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
-/**
- *
- * @Project Snakee
- * @Description Spilaðu leikinn
- * @Author Sigurður Sigurðardóttir
- * @version Ekki viss
- */
+public class Play extends Pane {
+	private Canvas canvas;
+	public MySnake mySnake;
+	private FoodModel foodModel;
+	private Image background;
+	private Image fail;
+    private GameFrame controller;
 
-public class Play extends GameFrame
-{
 
-	private static final long serialVersionUID = -3641221053272056036L;
+	public Play() {
+		controller = new GameFrame();
+		foodModel = new FoodModel();
+		mySnake = new MySnake(100, 100); // Initialize with starting position
+		background = GameImageLoader.getImages().get("UI-background");
+		fail = GameImageLoader.getImages().get("game-scene-01");
 
-	public MySnake mySnake = new MySnake(100, 100);// x , y
-	public FoodModel foodModel = new FoodModel();
+		canvas = new Canvas(870, 560); // Set canvas size
+		getChildren().add(canvas);
 
-	public Image background = GameImageLoader.getImages().get("UI-background");
-	public Image fail = ImageLoader.images.get("game-scene-01");
+		// Set up key event handling
+		setFocusTraversable(true);
 
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		super.keyPressed(e);
-		mySnake.keyPressed(e);
+
+
+		// Start game loop
+		startGameLoop();
+
+	}
+	// Initialize and start music player
+
+
+	private void startGameLoop() {
+		new AnimationTimer() {
+			@Override
+			public void handle(long now) {
+				draw();
+			}
+		}.start();
 	}
 
-	@Override
-	public void paint(Graphics g)
-	{
-		super.paint(g);
-		g.drawImage(background, 0, 0, null);
 
-		// "Decide the position of the game."
-		if (mySnake.l)
-		{
-			mySnake.draw(g);
-			if (foodModel.l)
-			{
-				foodModel.draw(g);
-				foodModel.eaten(mySnake);
-			} else
-			{
+
+	public void draw() {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); // Clear the canvas
+		gc.drawImage(background, 0, 0);
+
+		if (mySnake.isAlive()) {
+			mySnake.draw(gc);
+			if (!foodModel.isEaten()) {
+				foodModel.draw(gc);
+				foodModel.checkIfEaten(mySnake);
+			}
+			else{
 				foodModel = new FoodModel();
 			}
-		} else
-		{
-			g.drawImage(fail, 0, 0, null);
-			//	System.exit(0);
-
+		} else {
+			gc.drawImage(fail, 0, 0);
 		}
-		drawScore(g);
+		drawScore(gc,mySnake);
 	}
 
-	public void drawScore(Graphics g)
-	{
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-		g.setColor(Color.MAGENTA);
-		g.drawString("SCORE : " + mySnake.score, 20, 40);
-	}
-
-
-	public void begin()
-	{
-		new Play().loadFrame();
-		new MusicPlayer("src/example/frogger.mp3",true);
-
+	private void drawScore(GraphicsContext gc,MySnake mySnake) {
+		gc.setFont(Font.font("SansSerif", FontWeight.BOLD, 30));
+		gc.setFill(Color.MAGENTA);
+		gc.fillText("SCORE : " + mySnake.getScore(), 20, 40);
 	}
 }
