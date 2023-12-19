@@ -17,7 +17,10 @@ public class GameImageLoader {
 		// snake
 		IMAGES.put("snake-head-right", GameImageUtil.getImage("/images/snake-head-right.png"));
 		IMAGES.put("snake-body", GameImageUtil.getImage("/images/snake-body.png"));
-		// obstacles
+		IMAGES.put("snake-icon", GameImageUtil.getImage("/images/snake-logo.png"));
+		//animation
+		IMAGES.put("boom", GameImageUtil.getImage("/images/boom.gif"));
+		// food
 		IMAGES.put("0", GameImageUtil.getImage("/images/Food/food-kiwi.png"));
 		IMAGES.put("1", GameImageUtil.getImage("/images/Food/food-lemon.png"));
 		IMAGES.put("2", GameImageUtil.getImage("/images/Food/food-litchi.png"));
@@ -35,8 +38,9 @@ public class GameImageLoader {
 		IMAGES.put("14", GameImageUtil.getImage("/images/Food/food-pineapple.png"));
 		IMAGES.put("15", GameImageUtil.getImage("/images/Food/food-strawberry.png"));
 		IMAGES.put("16", GameImageUtil.getImage("/images/Food/food-watermelon.png"));
-		IMAGES.put("UI-background", GameImageUtil.getImage("/images/UI-background.png"));
-		IMAGES.put("game-scene-01", GameImageUtil.getImage("/images/game-scene-01.jpg"));
+		IMAGES.put("background", GameImageUtil.getImage("/images/UI-background.png"));
+		IMAGES.put("endgame", GameImageUtil.getImage("/images/end.png"));
+
 	}
 
 
