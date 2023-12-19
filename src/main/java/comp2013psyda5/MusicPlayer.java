@@ -10,20 +10,22 @@ import java.util.logging.Logger;
 public class MusicPlayer {
 	private static final Logger LOGGER = Logger.getLogger(MusicPlayer.class.getName());
 
-	private String filename;
 	private MediaPlayer mediaPlayer;
 
 	public MusicPlayer(String filename, boolean loop) {
-		this.filename = filename;
 		try {
 			String mediaPath = getClass().getResource(filename).toExternalForm();
 			Media media = new Media(mediaPath);
 			mediaPlayer = new MediaPlayer(media);
-			mediaPlayer.setAutoPlay(true);
+
 
 			if (loop) {
-				mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
+				mediaPlayer.setOnEndOfMedia(new Runnable() {
+					public void run(){mediaPlayer.seek(Duration.ZERO);}
+				});
 			}
+
+			mediaPlayer.play();
 		}  catch (NullPointerException e) {
 			LOGGER.log(Level.SEVERE, "File URL is null for: " + filename, e);
 		}
