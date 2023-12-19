@@ -2,23 +2,23 @@ package comp2013psyda5;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MySnake extends SnakeObject{
+public class MySnake extends Object {
     private int speedXY;
     private int length;
-    private int x, y;
     private int score = 0;
     private int num;
-    private boolean alive = true;
+    private boolean alive ;
     private Direction direction = Direction.RIGHT;
-    private Image imgSnakeHead = GameImageLoader.getImages().get("snake-head-right");
-    private Image imgSnakeBody = GameImageLoader.getImages().get("snake-body");
+    private Image imgSnakeHead ;
+    private Image newimgSnakeHead  ;
+
+
     private List<Point> bodyPoints = new LinkedList<>();
 
     public MySnake(int x, int y) {
@@ -27,9 +27,11 @@ public class MySnake extends SnakeObject{
         this.image = GameImageLoader.getImages().get("snake-body");
         this.width = (int) image.getWidth();
         this.height = (int) image.getHeight();
-        this.speedXY = 5;
-        this.length = 1;
-        this.num = width / speedXY;
+        speedXY = 5;
+        length = 1;
+        num = width / speedXY;
+        alive = true;
+        imgSnakeHead= GameImageLoader.getImages().get("snake-head-right");
 
     }
     public int getLength()
@@ -40,6 +42,36 @@ public class MySnake extends SnakeObject{
     public int getScore()
     {
         return score;
+    }
+
+    public int getX()
+    {
+        if(x>=Constants.GAME_WIDTH){
+            return Constants.GAME_WIDTH-20;
+        } else{
+            return x;
+        }
+
+    }
+
+    public int getY()
+    {
+        if(y>=Constants.GAME_HEIGHT){
+            return Constants.GAME_HEIGHT-20;
+        } else{
+            return y;
+        }
+
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
     }
 
     public void addScore(int points)
@@ -58,25 +90,25 @@ public class MySnake extends SnakeObject{
             case UP:
                 if (direction != Direction.DOWN) {
                     direction = Direction.UP;
-                    imgSnakeHead = GameImageUtil.rotateImage(imgSnakeHead, 90);
+                    newimgSnakeHead = GameImageUtil.rotateImage(imgSnakeHead, -90);
                 }
                 break;
             case DOWN:
                 if (direction != Direction.UP) {
                     direction = Direction.DOWN;
-                    imgSnakeHead = GameImageUtil.rotateImage(imgSnakeHead, -90);
+                    newimgSnakeHead = GameImageUtil.rotateImage(imgSnakeHead, 90);
                 }
                 break;
             case LEFT:
                 if (direction != Direction.RIGHT) {
                     direction = Direction.LEFT;
-                    imgSnakeHead = GameImageUtil.rotateImage(imgSnakeHead, -180);
+                    newimgSnakeHead = GameImageUtil.rotateImage(imgSnakeHead, -180);
                 }
                 break;
             case RIGHT:
                 if (direction != Direction.LEFT) {
                     direction = Direction.RIGHT;
-                    imgSnakeHead = GameImageUtil.rotateImage(imgSnakeHead, 0);
+                    newimgSnakeHead = imgSnakeHead;
                 }
                 break;
         }
@@ -85,6 +117,10 @@ public class MySnake extends SnakeObject{
 
 
     public void move() {
+        if (!alive) {
+            return;
+        }
+
         // Update the position of the head based on the current direction
         switch (direction) {
             case UP:
@@ -106,52 +142,58 @@ public class MySnake extends SnakeObject{
 
 
     public void draw(GraphicsContext gc) {
-        checkOutOfBounds();
         checkSelfCollision();
-
-        bodyPoints.add(new Point(x, y));
-        if (bodyPoints.size() == (this.length + 1) * num)
-        {
+        checkOutOfBounds();
+        bodyPoints.add(new Point(getX(), getY()));
+        if (bodyPoints.size() == (this.length + 1) * num) {
             bodyPoints.remove(0);
         }
 
-        gc.drawImage(imgSnakeHead, x, y);
+        gc.drawImage(newimgSnakeHead, x, y);
         drawBody(gc);
         move();
 
+
     }
     public boolean isAlive() {
+      checkSelfCollision();
+      checkOutOfBounds();
       return alive;
     }
 
 
 
     private void drawBody(GraphicsContext gc) {
-        // Draw the snake's body
-        for (Point point : bodyPoints) {
-            gc.drawImage(imgSnakeBody, point.x, point.y);
+        int length = bodyPoints.size() - 1 - num;
+
+        for (int i = length; i >= num; i -= num)
+        {
+            Point point = bodyPoints.get(i);
+            gc.drawImage(image, point.x, point.y);
         }
     }
 
     private void checkOutOfBounds() {
-        boolean outOfBounds = x < 0 || x >= 870 || y < 0 || y >= 560;
+        boolean outOfBounds = x < 0 || x >= Constants.GAME_WIDTH || y < 0 || y >= Constants.GAME_HEIGHT;
         if (outOfBounds) {
             alive = false;
         }
     }
 
     private void checkSelfCollision() {
-        if (!bodyPoints.isEmpty()) {
-            Point head = bodyPoints.getFirst();
-            for (int i = 1; i < bodyPoints.size(); i++) {
-                Point bodyPart = bodyPoints.get(i);
-                if (head.equals(bodyPart)) {
+        for (Point point : bodyPoints)
+        {
+            for (Point point2 : bodyPoints)
+            {
+                if (point.equals(point2) && point != point2)
+                {
                     alive = false;
-                    break;
                 }
             }
         }
     }
+
+
 
 
 }
