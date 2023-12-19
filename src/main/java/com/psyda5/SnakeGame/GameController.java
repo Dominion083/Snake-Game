@@ -1,4 +1,4 @@
-package comp2013psyda5;
+package com.psyda5.SnakeGame;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

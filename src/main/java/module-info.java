@@ -16,6 +16,6 @@ module com.example.Comp2013psyda5 {
     requires java.logging;
 
 
-    opens comp2013psyda5 to javafx.fxml;
-    exports comp2013psyda5;
+    opens psyda5.SnakeGame to javafx.fxml;
+    exports psyda5.SnakeGame;
 }

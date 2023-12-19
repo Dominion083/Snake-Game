@@ -1,7 +1,4 @@
-package comp2013psyda5;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+package com.psyda5.SnakeGame;
 
 import java.util.Random;
 

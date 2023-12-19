@@ -1,4 +1,4 @@
-package comp2013psyda5;
+package psyda5.SnakeGame;
 
 public class GameView {
 }

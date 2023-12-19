@@ -1,8 +1,6 @@
-package comp2013psyda5;
+package com.psyda5.SnakeGame;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 

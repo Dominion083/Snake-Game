@@ -1,13 +1,9 @@
-package comp2013psyda5;
+package com.psyda5.SnakeGame;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-
-import java.io.IOException;
 
 
 public class Start extends Application{
