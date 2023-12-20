@@ -1,4 +1,4 @@
-package com.DominionDMS.SnakeGame;
+package com.DominionDMS.SnakeGame.Controllers;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -7,12 +7,12 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MusicPlayer {
-	private static final Logger LOGGER = Logger.getLogger(MusicPlayer.class.getName());
+public class MusicController {
+	private static final Logger LOGGER = Logger.getLogger(MusicController.class.getName());
 
 	private MediaPlayer mediaPlayer;
 
-	public MusicPlayer(String filename, boolean loop) {
+	public MusicController(String filename, boolean loop) {
 		try {
 			String mediaPath = getClass().getResource(filename).toExternalForm();
 			Media media = new Media(mediaPath);
