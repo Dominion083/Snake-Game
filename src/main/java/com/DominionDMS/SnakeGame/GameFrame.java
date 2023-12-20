@@ -1,4 +1,4 @@
-package comp2013psyda5;
+package com.DominionDMS.SnakeGame;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;

@@ -1,4 +1,4 @@
-module com.example.Comp2013psyda5 {
+module com.DominionDMS.SnakeGame {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -16,6 +16,6 @@ module com.example.Comp2013psyda5 {
     requires java.logging;
 
 
-    opens comp2013psyda5 to javafx.fxml;
-    exports comp2013psyda5;
+    opens com.DominionDMS.SnakeGame to javafx.fxml;
+    exports com.DominionDMS.SnakeGame;
 }

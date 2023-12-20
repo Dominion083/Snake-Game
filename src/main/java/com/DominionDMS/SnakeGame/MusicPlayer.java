@@ -1,4 +1,4 @@
-package comp2013psyda5;
+package com.DominionDMS.SnakeGame;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

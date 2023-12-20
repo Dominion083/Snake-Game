@@ -1,4 +1,4 @@
-package comp2013psyda5;
+package com.DominionDMS.SnakeGame;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
@@ -6,7 +6,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -34,7 +33,7 @@ public class Play extends Pane {
 		mySnake = new MySnake(100, 100); // Initialize with starting position
 		background = GameImageLoader.getImages().get("background");
 		fail = GameImageLoader.getImages().get("endgame");
-		boom = new Image(getClass().getResourceAsStream("/images/boom.gif"));
+		boom = new Image(getClass().getResourceAsStream("images/boom.gif"));
 
 		canvas = new Canvas(870, 560); // Set canvas size
 		explosionView = new ImageView(boom);
@@ -83,14 +82,14 @@ public class Play extends Pane {
 			}
 			else{
 				foodModel = new FoodModel();
-				MusicPlayer musicPlayer = new MusicPlayer("/music/munch.mp3", false);
+				MusicPlayer musicPlayer = new MusicPlayer("music/munch.mp3", false);
 
 			}
 		} else if (!endScreenShown){
 			explosionView.setX(mySnake.getX());
 			explosionView.setY(mySnake.getY());
 			explosionView.setVisible(true);
-			MusicPlayer musicPlayer = new MusicPlayer("/music/explosion.mp3", true);
+			MusicPlayer musicPlayer = new MusicPlayer("music/explosion.mp3", false);
 			PauseTransition pause = new PauseTransition(Duration.seconds(2));
 			pause.setOnFinished(event -> showEndScreen(gc));
 			pause.play();
