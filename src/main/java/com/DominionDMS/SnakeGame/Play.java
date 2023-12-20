@@ -1,4 +1,4 @@
-package com.psyda5.SnakeGame;
+package com.DominionDMS.SnakeGame;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
@@ -82,14 +82,14 @@ public class Play extends Pane {
 			}
 			else{
 				foodModel = new FoodModel();
-				MusicPlayer musicPlayer = new MusicPlayer("/music/munch.mp3", false);
+				MusicPlayer musicPlayer = new MusicPlayer("/com/DominionDMS/SnakeGame/music/munch.mp3", false);
 
 			}
 		} else if (!endScreenShown){
 			explosionView.setX(mySnake.getX());
 			explosionView.setY(mySnake.getY());
 			explosionView.setVisible(true);
-			MusicPlayer musicPlayer = new MusicPlayer("/music/explosion.mp3", true);
+			MusicPlayer musicPlayer = new MusicPlayer("/com/DominionDMS/SnakeGame/music/explosion.mp3", true);
 			PauseTransition pause = new PauseTransition(Duration.seconds(2));
 			pause.setOnFinished(event -> showEndScreen(gc));
 			pause.play();

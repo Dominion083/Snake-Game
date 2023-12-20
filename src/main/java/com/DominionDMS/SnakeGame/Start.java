@@ -1,4 +1,4 @@
-package com.psyda5.SnakeGame;
+package com.DominionDMS.SnakeGame;
 
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -28,7 +28,7 @@ public class Start extends Application{
         scene.setOnKeyPressed(event -> controller.handleKeyPressed(event,view.mySnake));
         stage.setTitle("Snake Game");
         stage.show();
-        MusicPlayer musicPlayer = new MusicPlayer("/music/frogger.mp3", true);
+        MusicPlayer musicPlayer = new MusicPlayer("/com/DominionDMS/SnakeGame/music/frogger.mp3", true);
 
 
     }

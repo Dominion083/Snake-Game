@@ -1,4 +1,4 @@
-package com.psyda5.SnakeGame;
+package com.DominionDMS.SnakeGame;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -32,6 +32,7 @@ public class MySnake extends Object {
         num = width / speedXY;
         alive = true;
         imgSnakeHead= GameImageLoader.getImages().get("snake-head-right");
+        newimgSnakeHead = imgSnakeHead;
 
     }
     public int getLength()

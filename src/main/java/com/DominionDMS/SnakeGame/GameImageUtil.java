@@ -1,4 +1,4 @@
-package com.psyda5.SnakeGame;
+package com.DominionDMS.SnakeGame;
 
 import javafx.scene.image.Image;
 import javafx.embed.swing.SwingFXUtils;

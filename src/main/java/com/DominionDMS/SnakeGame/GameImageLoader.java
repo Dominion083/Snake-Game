@@ -1,5 +1,5 @@
 
-package com.psyda5.SnakeGame;
+package com.DominionDMS.SnakeGame;
 
 import javafx.scene.image.Image;
 import java.util.Collections;
