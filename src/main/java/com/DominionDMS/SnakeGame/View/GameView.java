@@ -4,6 +4,7 @@ import com.DominionDMS.SnakeGame.Controllers.GameController;
 import com.DominionDMS.SnakeGame.Controllers.MusicController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
+import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import javafx.animation.PauseTransition;
 import javafx.scene.canvas.Canvas;
@@ -22,15 +23,13 @@ import java.awt.*;
 public class GameView extends Pane {
 	private Canvas canvas;
 	private GameController controller;
-
-	public SnakeModel snakeModel;
+	private SnakeModel snakeModel;
 	private FoodModel foodModel;
 	private Image background;
 	private Image fail;
 	private Image boom;
 	private Image body;
 	private ImageView explosionView;
-
 	private boolean end = false;
 	private Image imgSnakeHead ;
 	private Image newimgSnakeHead;
@@ -48,10 +47,10 @@ public class GameView extends Pane {
 		body = GameImageLoader.getImages().get("snake-body");
 		newimgSnakeHead = imgSnakeHead;
 
-		canvas = new Canvas(870, 560); // Set canvas size
+		canvas = new Canvas(Constants.GAME_WIDTH, Constants.GAME_HEIGHT); // Set canvas size
 		explosionView = new ImageView(boom);
-		explosionView.setFitWidth(40);  // Set the new width
-		explosionView.setFitHeight(40); // Set the new height
+		explosionView.setFitWidth(Constants.BOOM_WIDTH);  // Set the new width
+		explosionView.setFitHeight(Constants.BOOM_HEIGHT); // Set the new height
 		explosionView.setPreserveRatio(true);
 		explosionView.setVisible(false);
 
@@ -83,41 +82,49 @@ public class GameView extends Pane {
 
 
 
-	public void paint(boolean x) {
+	public void paint(boolean alive) {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		if(x){
-			gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); // Clear the canvas
+		if (alive) {
+			gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 			gc.drawImage(background, 0, 0);
 			end = false;
 			drawSnake(gc);
+		} else {
+			handleGameOver(gc);
 		}
-		else{
-			explosionView.setX(snakeModel.getxPosition());
-			explosionView.setY(snakeModel.getyPosition());
-			explosionView.setVisible(true);
-			MusicController musicController = new MusicController("/music/explosion.mp3", false);
-			PauseTransition pause = new PauseTransition(Duration.seconds(2));
-			pause.setOnFinished(event -> showEndScreen(gc));
-			pause.play();
-			end = true;
-		}
-
 	}
+
+	private void handleGameOver(GraphicsContext gc) {
+		explosionView.setX(snakeModel.getxPosition());
+		explosionView.setY(snakeModel.getyPosition());
+		explosionView.setVisible(true);
+		MusicController musicController = new MusicController("/music/explosion.mp3", false);
+		PauseTransition pause = new PauseTransition(Duration.seconds(2));
+		pause.setOnFinished(event -> showEndScreen(gc));
+		pause.play();
+		end = true;
+	}
+
 	public void drawSnake(GraphicsContext gc) {
 		int x = snakeModel.getxPosition();
-		int y= snakeModel.getyPosition();
+		int y = snakeModel.getyPosition();
 		controller.checkSelfCollision();
 		controller.checkOutOfBounds();
 		snakeModel.getBodyPoints().add(new Point(x, y));
-		if (snakeModel.getBodyPoints().size() == (snakeModel.getLength()+ 1) * snakeModel.getBodyNum()) {
-			snakeModel.getBodyPoints().remove(0);
-		}
+
+		manageSnakeBody();
 
 		gc.drawImage(newimgSnakeHead, x, y);
 		drawBody(gc);
 		controller.move();
-
 	}
+
+	private void manageSnakeBody() {
+		if (snakeModel.getBodyPoints().size() == (snakeModel.getLength() + 1) * snakeModel.getBodyNum()) {
+			snakeModel.getBodyPoints().remove(0);
+		}
+	}
+
 	public void drawBody(GraphicsContext gc) {
 		int length = snakeModel.getBodyPoints().size() - 1 - snakeModel.getBodyNum();
 
@@ -135,7 +142,7 @@ public class GameView extends Pane {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.setFont(Font.font("SansSerif", FontWeight.BOLD, 30));
 		gc.setFill(Color.MAGENTA);
-		gc.fillText("SCORE : " + snakeModel.getScore(), 20, 40);
+		gc.fillText("SCORE : " + snakeModel.getScore(), Constants.SNAKE_SCORE_X, Constants.SNAKE_SCORE_Y);
 	}
 
 	private void showEndScreen(GraphicsContext gc) {

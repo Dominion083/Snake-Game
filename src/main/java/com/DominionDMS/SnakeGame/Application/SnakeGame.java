@@ -34,7 +34,7 @@ public class SnakeGame extends Application{
         foodmodel = new FoodModel();
         snakemodel = new SnakeModel();
         foodmodel.initialise();
-        snakemodel.initialise(Constants.SNAKE_STARTX,Constants.SNAKE_STARTY);
+        snakemodel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
         controller.initialise(view,snakemodel,foodmodel);
         view.initialise(controller,foodmodel,snakemodel);
 
@@ -42,7 +42,7 @@ public class SnakeGame extends Application{
         stage.setScene(scene);
         Image icon = GameImageLoader.getImages().get("snake-icon");
         stage.getIcons().add(icon);
-        scene.setOnKeyPressed(event -> controller.handleKeyPressed(event,view.snakeModel));
+        scene.setOnKeyPressed(event -> controller.handleKeyPressed(event,snakemodel));
         stage.setTitle("Snake Game");
         stage.show();
         controller.startGameLoop();
