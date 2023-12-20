@@ -8,6 +8,7 @@ public abstract class Object {
 
     int x;
     int y;
+
     Image image;
     int width;
     int height;
