@@ -50,7 +50,7 @@
 <details>
 <summary>Class Descriptions</summary>
 
-###  `1-Redundant Classes`: Main and Paddle
+###  `1-Redundant Classes`: Main and Paddle.
 
 
 ###  `2-Class`: MyFrame
