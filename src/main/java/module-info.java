@@ -18,4 +18,15 @@ module com.DominionDMS.SnakeGame {
 
     opens com.DominionDMS.SnakeGame to javafx.fxml;
     exports com.DominionDMS.SnakeGame;
+    exports com.DominionDMS.SnakeGame.Utils;
+    opens com.DominionDMS.SnakeGame.Utils to javafx.fxml;
+    exports com.DominionDMS.SnakeGame.Controllers;
+    opens com.DominionDMS.SnakeGame.Controllers to javafx.fxml;
+    exports com.DominionDMS.SnakeGame.Model;
+    opens com.DominionDMS.SnakeGame.Model to javafx.fxml;
+    exports com.DominionDMS.SnakeGame.View;
+    opens com.DominionDMS.SnakeGame.View to javafx.fxml;
+    exports com.DominionDMS.SnakeGame.Application;
+    opens com.DominionDMS.SnakeGame.Application to javafx.fxml;
+
 }

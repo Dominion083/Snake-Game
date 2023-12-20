@@ -1,4 +1,4 @@
-package com.DominionDMS.SnakeGame;
+package com.DominionDMS.SnakeGame.Utils;
 
 import javafx.scene.image.Image;
 import javafx.embed.swing.SwingFXUtils;
