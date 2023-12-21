@@ -33,7 +33,6 @@ public class SnakeGame extends Application{
         controller = new GameController();
         foodmodel = new FoodModel();
         snakemodel = new SnakeModel();
-        foodmodel.initialise();
         snakemodel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
         controller.initialise(view,snakemodel,foodmodel);
         view.initialise(controller,foodmodel,snakemodel);

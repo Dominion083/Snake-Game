@@ -4,7 +4,6 @@ import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,12 +13,11 @@ public class SnakeModel {
     private int yPosition;
     private int width;
     private int height;
-    private static int speedXY;
+    private int speedXY;
     private int length;
     private int score = 0;
     private int bodyNum;
     private boolean isAlive ;
-    private Image image;
 
     private List<Point> bodyPoints = new LinkedList<>();
 
@@ -27,7 +25,7 @@ public class SnakeModel {
     public void initialise(int x, int y){
         this.xPosition = x;
         this.yPosition = y;
-        this.image = GameImageLoader.getImages().get("snake-body");
+        Image image = GameImageLoader.getImages().get("snake-body");
         this.width = (int) image.getWidth();
         this.height = (int) image.getHeight();
         speedXY = 5;
@@ -40,11 +38,10 @@ public class SnakeModel {
         return bodyPoints;
     }
 
-    public void setxPosition(int x)
-    {
-     this.xPosition = x;
-
+    public void setxPosition(int x) {
+        this.xPosition = x;
     }
+
 
     public void setyPosition(int y)
     {
@@ -65,22 +62,15 @@ public class SnakeModel {
 
     public int getxPosition()
     {
-        if(xPosition >= Constants.GAME_WIDTH){
-            return Constants.GAME_WIDTH-20;
-        } else{
-            return xPosition;
-        }
+        return xPosition;
 
     }
     public int getyPosition()
     {
-        if(yPosition >=Constants.GAME_HEIGHT){
-            return Constants.GAME_HEIGHT-20;
-        } else{
-            return yPosition;
-        }
-
+        return yPosition;
     }
+
+
     public void setSpeed(int speed)
     {
       this.speedXY = speed;
@@ -111,7 +101,7 @@ public class SnakeModel {
         score += points;
     }
 
-    public void changeLength(int length)
+    public void setLength(int length)
     {
         this.length = length;
     }
