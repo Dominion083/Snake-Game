@@ -23,6 +23,7 @@ import java.awt.*;
 public class GameView extends Pane {
 	private Canvas canvas;
 	private GameController controller;
+	private MusicController explosionSound;
 	private SnakeModel snakeModel;
 	private FoodModel foodModel;
 	private Image background;
@@ -53,6 +54,7 @@ public class GameView extends Pane {
 		explosionView.setFitHeight(Constants.BOOM_HEIGHT); // Set the new height
 		explosionView.setPreserveRatio(true);
 		explosionView.setVisible(false);
+	    explosionSound = new MusicController("/music/explosion.mp3", false,false);
 
 		getChildren().addAll(canvas,explosionView);
 
@@ -95,23 +97,31 @@ public class GameView extends Pane {
 	}
 
 	private void handleGameOver(GraphicsContext gc) {
-		explosionView.setX(snakeModel.getxPosition());
-		explosionView.setY(snakeModel.getyPosition());
+		int x = controller.adjustXWithinBounds(snakeModel.getxPosition());
+		int y = controller.adjustYWithinBounds(snakeModel.getyPosition());
+		explosionView.setX(x);
+		explosionView.setY(y);
 		explosionView.setVisible(true);
-		MusicController musicController = new MusicController("/music/explosion.mp3", false);
+		explosionSound.play();
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
 		pause.setOnFinished(event -> showEndScreen(gc));
 		pause.play();
 		end = true;
 	}
+	private void showEndScreen(GraphicsContext gc) {
+		explosionSound.stop();
+		gc.drawImage(fail,0,0,canvas.getWidth(),canvas.getHeight());
+		explosionView.setVisible(false);
+
+	}
 
 	public void drawSnake(GraphicsContext gc) {
+		controller.isSnakeAlive();
+
 		int x = snakeModel.getxPosition();
 		int y = snakeModel.getyPosition();
-		controller.checkSelfCollision();
-		controller.checkOutOfBounds();
-		snakeModel.getBodyPoints().add(new Point(x, y));
 
+		snakeModel.getBodyPoints().add(new Point(x, y));
 		manageSnakeBody();
 
 		gc.drawImage(newimgSnakeHead, x, y);
@@ -145,11 +155,7 @@ public class GameView extends Pane {
 		gc.fillText("SCORE : " + snakeModel.getScore(), Constants.SNAKE_SCORE_X, Constants.SNAKE_SCORE_Y);
 	}
 
-	private void showEndScreen(GraphicsContext gc) {
-		gc.drawImage(fail,0,0,canvas.getWidth(),canvas.getHeight());
-		explosionView.setVisible(false);
 
-	}
 	public boolean getEndScreen() {
       return end;
 	}

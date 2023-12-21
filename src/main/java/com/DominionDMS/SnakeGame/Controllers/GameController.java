@@ -29,6 +29,10 @@ public class GameController
 	private GameView view;
 	private FoodModel foodModel;
 
+	private MusicController musicController1;
+
+	private MusicController musicController;
+
 
 
 
@@ -51,9 +55,11 @@ public class GameController
 		}
 	};
 	public void startGameLoop() {
-		MusicController musicController = new MusicController("/music/frogger.mp3", true);
+		musicController = new MusicController("/music/frogger.mp3", true,true);
+		musicController1 = new MusicController("/music/munch.mp3" ,false,false);
 		gameLoopTimer.start();
 	}
+
 
 	private void Loop() throws IOException {
 
@@ -64,15 +70,23 @@ public class GameController
 				checkIfFoodEaten();
 			}
 			else{
+				musicController1.play();
 				foodModel.initialise();
-				MusicController musicController = new MusicController("/music/munch.mp3", false);
+
+
 
 			}
+			view.drawScore(snakeModel);
 		} else if (!view.getEndScreen()){
 			view.paint(false);
+			view.drawScore(snakeModel);
+			musicController.stop();
+			musicController1.stop();
+			gameLoopTimer.stop();
+
 		}
 
-		view.drawScore(snakeModel);
+
 	}
 
 
@@ -151,11 +165,28 @@ public class GameController
 		checkSelfCollision();
 		checkOutOfBounds();
 	}
+
+	public int adjustXWithinBounds(int newX) {
+		if (newX >= Constants.GAME_WIDTH) {
+			return Constants.GAME_WIDTH - 20; // 20 is an arbitrary number, replace with appropriate constant or logic
+		} else {
+			return newX;
+		}
+	}
+
+	public int adjustYWithinBounds(int newY) {
+		if (newY >= Constants.GAME_HEIGHT) {
+			return Constants.GAME_HEIGHT - 20; // Replace 20 with appropriate constant or logic
+		} else {
+			return newY;
+		}
+	}
+
 	public void checkIfFoodEaten()	{
 
 		if (snakeModel.getRectangle().intersects(foodModel.getRectangle()) && !foodModel.isEaten() && snakeModel.isAlive()){
 			foodModel.setEaten(true);
-			snakeModel.changeLength(snakeModel.getLength() + 1);
+			snakeModel.setLength(snakeModel.getLength() + 1);
 			snakeModel.addScore(foodModel.getPoints());
 		}
 	}

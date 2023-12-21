@@ -10,6 +10,7 @@ import java.util.Random;
 public class FoodModel  {
 
 	private static int points = 10;
+	private static final Random random = new Random();
 	private int x;
 	private int y;
 	private Image image;
@@ -18,18 +19,18 @@ public class FoodModel  {
 	private boolean eaten;
 
 	public FoodModel() {
-
+      initialise();
 	}
 
 	public void initialise() {
-		this.image = GameImageLoader.getImages().get(String.valueOf(new Random().nextInt(10)));
+		this.image = GameImageLoader.getImages().get(String.valueOf(random.nextInt(16)));
 		this.width = (int) image.getWidth();
 		this.height = (int) image.getHeight();
-		this.eaten = false;;
+		this.eaten = false;
 		int maxWidth = Constants.GAME_WIDTH - width; // Width of game board boundary
 		int maxHeight = Constants.GAME_HEIGHT - height; // Height of game board boundary
-		this.x = new Random().nextInt(maxWidth);
-		this.y = new Random().nextInt(maxHeight);
+		this.x = random.nextInt(maxWidth);
+		this.y = random.nextInt(maxHeight);
 	}
 
 	public boolean isEaten() {
@@ -44,6 +45,10 @@ public class FoodModel  {
 
 	public int getPoints() {
 		return points;
+	}
+
+	public void setPoints(int x) {
+		points = x;
 	}
 
 	public int getX() {

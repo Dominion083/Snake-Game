@@ -9,10 +9,18 @@ import java.util.logging.Logger;
 
 public class MusicController {
 	private static final Logger LOGGER = Logger.getLogger(MusicController.class.getName());
-
 	private MediaPlayer mediaPlayer;
+	private boolean loop;
+	private boolean play;
+	private String filename;
+	public MusicController(String filename, boolean loop,boolean play) {
+		this.filename = filename;
+		this.loop = loop;
+		this.play = play;
 
-	public MusicController(String filename, boolean loop) {
+		initializeMediaPlayer();
+	}
+	private void initializeMediaPlayer() {
 		try {
 			String mediaPath = getClass().getResource(filename).toExternalForm();
 			Media media = new Media(mediaPath);
@@ -24,8 +32,9 @@ public class MusicController {
 					public void run(){mediaPlayer.seek(Duration.ZERO);}
 				});
 			}
-
+          if(play){
 			mediaPlayer.play();
+		  }
 		}  catch (NullPointerException e) {
 			LOGGER.log(Level.SEVERE, "File URL is null for: " + filename, e);
 		}
@@ -33,6 +42,7 @@ public class MusicController {
 
 	public void play() {
 		if (mediaPlayer != null) {
+			initializeMediaPlayer();
 			mediaPlayer.play();
 		} else {
 			LOGGER.log(Level.SEVERE, "MediaPlayer is not initialized");
