@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="560.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DominionDMS.SnakeGame.Controllers.ViewController">
+<AnchorPane prefHeight="560.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DominionDMS.SnakeGame.Controllers.ViewController">
    <children>
       <ImageView fitHeight="560.0" fitWidth="870.0">
          <image>

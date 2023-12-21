@@ -16,7 +16,7 @@ public class GameImageLoader {
 	private static void loadImages() {
 		// snake
 		IMAGES.put("snake-head-right", GameImageUtil.getImage("/images/snake-head-right.png"));
-		IMAGES.put("snake-body", GameImageUtil.getImage("/images/snake-body.png"));
+		IMAGES.put("snake-body", GameImageUtil.getImage("/images/snake-bodyyy.png"));
 		IMAGES.put("snake-icon", GameImageUtil.getImage("/images/snake-logo.png"));
 		//animation
 		IMAGES.put("boom", GameImageUtil.getImage("/images/boom.gif"));
