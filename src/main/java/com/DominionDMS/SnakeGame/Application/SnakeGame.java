@@ -1,8 +1,11 @@
 package com.DominionDMS.SnakeGame.Application;
 
 import com.DominionDMS.SnakeGame.Controllers.GameController;
+
+import com.DominionDMS.SnakeGame.Controllers.ViewController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
+import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import com.DominionDMS.SnakeGame.View.GameView;
@@ -24,6 +27,9 @@ public class SnakeGame extends Application{
  */
     GameView view;
     GameController controller;
+
+    GameModel gamemodel;
+
     FoodModel foodmodel;
     SnakeModel snakemodel;
 
@@ -33,8 +39,10 @@ public class SnakeGame extends Application{
         controller = new GameController();
         foodmodel = new FoodModel();
         snakemodel = new SnakeModel();
+        gamemodel = new GameModel();
+
         snakemodel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
-        controller.initialise(view,snakemodel,foodmodel);
+        controller.initialise(view,snakemodel,foodmodel,gamemodel);
         view.initialise(controller,foodmodel,snakemodel);
 
         Scene scene = new Scene(view, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);

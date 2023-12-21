@@ -7,6 +7,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="560.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.snake.Controllers.MenuController">
@@ -18,30 +21,51 @@
       </ImageView>
       <ButtonBar layoutX="257.0" layoutY="160.0" prefHeight="40.0" prefWidth="0.0" />
       <ButtonBar layoutX="173.0" layoutY="149.0" prefHeight="40.0" prefWidth="200.0" />
-      <Button layoutX="74.0" layoutY="445.0" mnemonicParsing="false" onAction="#AccessSettings" prefHeight="59.0" prefWidth="279.0" text="Settings">
+      <Button layoutX="356.0" layoutY="379.0" mnemonicParsing="false" onAction="#AccessSettings" prefHeight="34.0" prefWidth="164.0" text="Settings" textFill="#170909">
          <font>
-            <Font name="Segoe UI Semibold" size="30.0" />
+            <Font name="Yu Gothic Bold" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="24.0" layoutY="26.0" prefHeight="142.0" prefWidth="402.0" text="SNAKE" textFill="#efff00">
+      <Label layoutX="294.0" prefHeight="126.0" prefWidth="368.0" text="SNAKE">
          <font>
-            <Font name="Showcard Gothic" size="120.0" />
+            <Font name="Wingdings 2" size="96.0" />
          </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="1.0" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.47999998927116394" green="0.5600000023841858" blue="0.2240000069141388" opacity="0.1899999976158142" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
       </Label>
-      <Button layoutX="74.0" layoutY="248.0" mnemonicParsing="false" onAction="#startgame" prefHeight="66.0" prefWidth="279.0" text="Play">
+      <Button layoutX="368.0" layoutY="233.0" mnemonicParsing="false" onAction="#startgame" prefHeight="47.0" prefWidth="141.0" text="Start">
          <font>
-            <Font name="Segoe UI Semibold" size="30.0" />
+            <Font name="Yu Gothic Bold" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="74.0" layoutY="345.0" mnemonicParsing="false" onAction="#AccessLeaderboard" prefHeight="66.0" prefWidth="279.0" text="Leaderboard">
+      <Button layoutX="335.0" layoutY="299.0" mnemonicParsing="false" onAction="#AccessLeaderboard" prefHeight="47.0" prefWidth="206.0" text="Leaderboard" textFill="#170909">
          <font>
-            <Font name="Segoe UI Semibold" size="30.0" />
+            <Font name="Yu Gothic UI Bold" size="24.0" />
          </font>
       </Button>
-      <TextField fx:id="nameInput" layoutX="173.0" layoutY="180.0" prefHeight="40.0" prefWidth="180.0" />
-      <Label layoutX="74.0" layoutY="182.0" prefHeight="36.0" prefWidth="101.0" text="Enter Name:" textFill="#efff00">
+      <TextField fx:id="nameInput" layoutX="406.0" layoutY="160.0" prefHeight="40.0" prefWidth="156.0" />
+      <Button layoutX="330.0" layoutY="457.0" mnemonicParsing="false" onAction="#AccessSettings" prefHeight="47.0" prefWidth="216.0" text="Report a Bug" textFill="#170909">
          <font>
-            <Font name="Showcard Gothic" size="15.0" />
+            <Font name="Yu Gothic Bold" size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="331.0" layoutY="163.0" minWidth="68.0" prefHeight="26.0" prefWidth="75.0" text="NAME:" textFill="#efff00">
+         <font>
+            <Font name="Yu Gothic UI Bold" size="23.0" />
          </font>
       </Label>
    </children>

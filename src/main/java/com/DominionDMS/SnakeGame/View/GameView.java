@@ -4,6 +4,7 @@ import com.DominionDMS.SnakeGame.Controllers.GameController;
 import com.DominionDMS.SnakeGame.Controllers.MusicController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
+import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import javafx.animation.PauseTransition;
@@ -25,13 +26,14 @@ public class GameView extends Pane {
 	private GameController controller;
 	private MusicController explosionSound;
 	private SnakeModel snakeModel;
+
 	private FoodModel foodModel;
 	private Image background;
 	private Image fail;
 	private Image boom;
 	private Image body;
 	private ImageView explosionView;
-	private boolean end = false;
+
 	private Image imgSnakeHead ;
 	private Image newimgSnakeHead;
 
@@ -89,7 +91,6 @@ public class GameView extends Pane {
 		if (alive) {
 			gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 			gc.drawImage(background, 0, 0);
-			end = false;
 			drawSnake(gc);
 		} else {
 			handleGameOver(gc);
@@ -106,7 +107,6 @@ public class GameView extends Pane {
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
 		pause.setOnFinished(event -> showEndScreen(gc));
 		pause.play();
-		end = true;
 	}
 	private void showEndScreen(GraphicsContext gc) {
 		explosionSound.stop();
@@ -156,9 +156,6 @@ public class GameView extends Pane {
 	}
 
 
-	public boolean getEndScreen() {
-      return end;
-	}
 
 
 

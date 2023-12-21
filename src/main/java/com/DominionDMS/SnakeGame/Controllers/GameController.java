@@ -4,6 +4,7 @@ import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Utils.GameImageUtil;
 import com.DominionDMS.SnakeGame.View.GameView;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
+import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyEvent;
@@ -28,6 +29,7 @@ public class GameController
 	private Direction direction = Direction.RIGHT;
 	private GameView view;
 	private FoodModel foodModel;
+	private GameModel gamemodel;
 
 	private MusicController musicController1;
 
@@ -37,10 +39,11 @@ public class GameController
 
 
 
-	public void initialise(GameView view, SnakeModel smodel, FoodModel fmodel) {
+	public void initialise(GameView view, SnakeModel smodel, FoodModel fmodel, GameModel gmodel) {
 		this.view = view;
 		this.snakeModel = smodel;
 		this.foodModel = fmodel;
+		this.gamemodel = gmodel;
 
 
 	}
@@ -65,6 +68,7 @@ public class GameController
 
 		if (snakeModel.isAlive()) {
 			view.paint(true);
+
 			if (!foodModel.isEaten()) {
 				view.draw(foodModel.getImage(),foodModel.getX(), foodModel.getY());
 				checkIfFoodEaten();
@@ -77,8 +81,9 @@ public class GameController
 
 			}
 			view.drawScore(snakeModel);
-		} else if (!view.getEndScreen()){
+		} else {
 			view.paint(false);
+			gamemodel.setEndStatus(true);
 			view.drawScore(snakeModel);
 			musicController.stop();
 			musicController1.stop();
@@ -190,6 +195,11 @@ public class GameController
 			snakeModel.addScore(foodModel.getPoints());
 		}
 	}
+	public boolean hasGameEnded()	{
+       return gamemodel.endStatus();
+
+	}
+
 
 
 	enum Direction {

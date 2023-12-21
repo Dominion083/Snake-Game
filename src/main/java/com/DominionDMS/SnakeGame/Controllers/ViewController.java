@@ -1,14 +1,19 @@
 package com.DominionDMS.SnakeGame.Controllers;
 
+import com.DominionDMS.SnakeGame.Model.FoodModel;
+import com.DominionDMS.SnakeGame.Model.GameModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class ViewController {
-    @FXML
-    private Label welcomeText;
+    static GameController controller;
+    static GameModel model;
+
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public static void initialise(GameController controller) {
+        ViewController.controller = controller;
+        ViewController.model = model;
     }
+
 }
