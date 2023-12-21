@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,21 +11,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="560.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.snake.Controllers.MenuController">
+<AnchorPane prefHeight="560.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DominionDMS.SnakeGame.Controllers.ViewController">
    <children>
-      <ImageView fitHeight="560.0" fitWidth="870.0" pickOnBounds="true">
+      <ImageView fitHeight="560.0" fitWidth="870.0">
          <image>
-            <Image url="@../../../../../../OneDrive/Documents/DMSCOMP2013Coursework/comp2013-coursework/src/main/resources/Assets/snake-game-background.png" />
+            <Image url="@../images/MenuBackground.jpg" />
          </image>
       </ImageView>
-      <ButtonBar layoutX="257.0" layoutY="160.0" prefHeight="40.0" prefWidth="0.0" />
-      <ButtonBar layoutX="173.0" layoutY="149.0" prefHeight="40.0" prefWidth="200.0" />
-      <Button layoutX="356.0" layoutY="379.0" mnemonicParsing="false" onAction="#AccessSettings" prefHeight="34.0" prefWidth="164.0" text="Settings" textFill="#170909">
-         <font>
-            <Font name="Yu Gothic Bold" size="24.0" />
-         </font>
-      </Button>
-      <Label layoutX="294.0" prefHeight="126.0" prefWidth="368.0" text="SNAKE">
+      <Label layoutX="297.0" prefHeight="117.0" prefWidth="307.0" text="SNAKE">
          <font>
             <Font name="Wingdings 2" size="96.0" />
          </font>
@@ -47,23 +39,28 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Button layoutX="368.0" layoutY="233.0" mnemonicParsing="false" onAction="#startgame" prefHeight="47.0" prefWidth="141.0" text="Start">
+      <Button fx:id="Start" layoutX="368.0" layoutY="233.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="47.0" prefWidth="141.0" text="Start">
          <font>
             <Font name="Yu Gothic Bold" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="335.0" layoutY="299.0" mnemonicParsing="false" onAction="#AccessLeaderboard" prefHeight="47.0" prefWidth="206.0" text="Leaderboard" textFill="#170909">
+      <Button fx:id="Leaderboard" layoutX="328.0" layoutY="295.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="47.0" prefWidth="246.0" text="Leaderboard" textFill="#170909">
          <font>
             <Font name="Yu Gothic UI Bold" size="24.0" />
          </font>
       </Button>
-      <TextField fx:id="nameInput" layoutX="406.0" layoutY="160.0" prefHeight="40.0" prefWidth="156.0" />
-      <Button layoutX="330.0" layoutY="457.0" mnemonicParsing="false" onAction="#AccessSettings" prefHeight="47.0" prefWidth="216.0" text="Report a Bug" textFill="#170909">
+      <Button fx:id="Settings" layoutX="353.0" layoutY="372.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="34.0" prefWidth="164.0" text="Settings" textFill="#170909">
          <font>
             <Font name="Yu Gothic Bold" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="331.0" layoutY="163.0" minWidth="68.0" prefHeight="26.0" prefWidth="75.0" text="NAME:" textFill="#efff00">
+      <TextField fx:id="nameText" layoutX="361.0" layoutY="160.0" prefHeight="40.0" prefWidth="156.0" />
+      <Button fx:id="report" layoutX="330.0" layoutY="457.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="47.0" prefWidth="216.0" text="Report a Bug" textFill="#170909">
+         <font>
+            <Font name="Yu Gothic Bold" size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="265.0" layoutY="163.0" minWidth="68.0" prefHeight="28.0" prefWidth="87.0" text="NAME:" textFill="#efff00">
          <font>
             <Font name="Yu Gothic UI Bold" size="23.0" />
          </font>

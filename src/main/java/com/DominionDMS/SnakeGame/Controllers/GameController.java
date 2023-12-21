@@ -7,7 +7,9 @@ import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
@@ -57,7 +59,10 @@ public class GameController
 			}
 		}
 	};
-	public void startGameLoop() {
+	public void startGameLoop(Stage stage) {
+	    Scene scene = new Scene(view, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+		stage.setScene(scene);
+		scene.setOnKeyPressed(event -> handleKeyPressed(event,snakeModel));
 		musicController = new MusicController("/music/frogger.mp3", true,true);
 		musicController1 = new MusicController("/music/munch.mp3" ,false,false);
 		gameLoopTimer.start();
