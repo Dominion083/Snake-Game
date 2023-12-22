@@ -2,34 +2,28 @@ package com.DominionDMS.SnakeGame.Application;
 
 import com.DominionDMS.SnakeGame.Controllers.GameController;
 
-import com.DominionDMS.SnakeGame.Controllers.ViewController;
+import com.DominionDMS.SnakeGame.Controllers.MenuController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import com.DominionDMS.SnakeGame.View.GameView;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.util.Duration;
 
 
 public class SnakeGame extends Application{
     GameView view;
     GameController controller;
     GameModel gamemodel;
-    ViewController viewController;
     FoodModel foodmodel;
     SnakeModel snakemodel;
-    Scene scene;
+    static Scene scene;
 
 
 
@@ -45,7 +39,8 @@ public class SnakeGame extends Application{
         snakemodel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
         controller.initialise(view,snakemodel,foodmodel,gamemodel);
         view.initialise(controller,foodmodel,snakemodel);
-        ViewController.initialise(controller,gamemodel);
+        MenuController.initialise(controller,gamemodel);
+
 
 
         Image icon = GameImageLoader.getImages().get("snake-icon");
@@ -65,6 +60,10 @@ public class SnakeGame extends Application{
 
 
     }
+    public static Scene returnScene(){
+        return scene;
+    }
+
 
      public static void main(String[] args)
     {

@@ -1,5 +1,7 @@
 package com.DominionDMS.SnakeGame.Controllers;
 
+import com.DominionDMS.SnakeGame.Application.SnakeGame;
+import com.DominionDMS.SnakeGame.Bombs;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Utils.GameImageUtil;
 import com.DominionDMS.SnakeGame.View.GameView;
@@ -29,7 +31,7 @@ public class GameController
 {
 
 	private SnakeModel snakeModel;
-	private Direction direction = Direction.RIGHT;
+	private Direction direction ;
 	private GameView view;
 	private FoodModel foodModel;
 	private GameModel gamemodel;
@@ -38,7 +40,7 @@ public class GameController
 
 	private MusicController musicController;
 
-
+    private Scene scene;
 
 
 
@@ -47,9 +49,22 @@ public class GameController
 		this.snakeModel = smodel;
 		this.foodModel = fmodel;
 		this.gamemodel = gmodel;
-
+		musicController1 = new MusicController("/music/munch.mp3" ,false,false);
+		scene = new Scene(view, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
 	}
+	public void startGameLoop(Stage stage,boolean replay) {
+		direction = Direction.RIGHT;
+		if (!replay){
+			setTheme(gamemodel.getTheme());}
+		setLevel(gamemodel.getLevel());
+		stage.setScene(scene);
+		scene.setOnKeyPressed(event -> handleKeyPressed(event,snakeModel));
+		scene.getFocusOwner();
+		foodModel.initialise(view.getBombs());
+		gameLoopTimer.start();
+	}
+
 	private final AnimationTimer gameLoopTimer = new AnimationTimer() {
 		@Override
 		public void handle(long now) {
@@ -60,19 +75,10 @@ public class GameController
 			}
 		}
 	};
-	public void startGameLoop(Stage stage,int theme) {
-		view.setUp(theme);
-	    Scene scene = new Scene(view, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-		stage.setScene(scene);
-		scene.setOnKeyPressed(event -> handleKeyPressed(event,snakeModel));
-
-		musicController1 = new MusicController("/music/munch.mp3" ,false,false);
-		gameLoopTimer.start();
-	}
 
 
 	private void Loop() throws IOException {
-
+		isSnakeAlive();
 		if (snakeModel.isAlive()) {
 			view.paint(true);
 
@@ -81,29 +87,54 @@ public class GameController
 				checkIfFoodEaten();
 			}
 			else{
+				if(gamemodel.getEfects()){
 				musicController1.play();
-				foodModel.initialise();
-
-
+				}
+				foodModel.initialise(view.getBombs());
 
 			}
 			view.drawScore(snakeModel);
 		} else {
 			view.paint(false);
-			gamemodel.setEndStatus(true);
 			view.drawScore(snakeModel);
-			musicController1.stop();
-			stopMusic();
+			resetGame();
 			gameLoopTimer.stop();
 
 		}
 
 
 	}
+	public void setTheme(int theme) {
+		switch (theme) {
+			case 1:
+				view.setUpTheme1();
+				break;
+			case 2:
+				view.setUpTheme2();
+				;
+				break;
+			case 3:
+				view.setUpTheme3();
+				break;
 
-	public void playMusic(){
-		musicController = new MusicController("/music/frogger.mp3", true,true);
+		}
+	}
+		public void setLevel(int level){
+		switch (level){
+			case 1:
+				view.setUpLevel1();
+				snakeModel.setSpeed(Constants.SNAKE_EASY_SPEED);
+				break;
+			case 2:
+				view.setUpLevel2();
+				snakeModel.setSpeed(Constants.SNAKE_MEDIUM_SPEED);
+				break;
+			case 3:
+				view.setUpLevel3();
+				snakeModel.setSpeed(Constants.SNAKE_DIFFICULT_SPEED);
+				break;
 
+		}
 	}
 
 
@@ -133,6 +164,9 @@ public class GameController
 						direction = Direction.RIGHT;
 						view.setSnakeHead(view.getSnakeHead());
 					}
+					break;
+				case SPACE:
+					pause();
 					break;
 			}
 		}
@@ -179,9 +213,22 @@ public class GameController
 			}
 		}
 	}
+	public void checkBombCollision() {
+		if (snakeModel.getLength() > 1) {
+			for (Bombs.Bomb bomb : view.getBombs().getBombs()) {
+				if (snakeModel.getRectangle().intersects(bomb.getRectangle()) && snakeModel.isAlive()) {
+					snakeModel.setAlive(false);
+					break;
+				}
+			}
+		}
+	}
 	public void  isSnakeAlive() {
+		if(gamemodel.getLevel()>1){
+		checkBombCollision();}
 		checkSelfCollision();
 		checkOutOfBounds();
+
 	}
 
 	public int adjustXWithinBounds(int newX) {
@@ -208,8 +255,9 @@ public class GameController
 			snakeModel.addScore(foodModel.getPoints());
 		}
 	}
-	public boolean hasGameEnded()	{
-       return gamemodel.endStatus();
+
+	public void playMusic(){
+		musicController = new MusicController("/music/frogger.mp3", true,true);
 
 	}
 	public void stopMusic(){
@@ -218,15 +266,30 @@ public class GameController
 	public void exit(){
 		Platform.exit();
 	}
-	public void pause(){
-		gameLoopTimer.stop();
+	public boolean effects(){
+		return gamemodel.getEfects();
+	}
+	public void mainMenu(Stage stage) throws IOException {
+		stage.setScene(SnakeGame.returnScene());
 
 	}
+	public void pause(){
+		gameLoopTimer.stop();
+		view.getPauseMenu().setVisible(true);
 
+	}
+	public void resume(){
+		gameLoopTimer.start();
+	}
+	public void resetGame(){
+        snakeModel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
+		view.resetHead();
+	}
 
+	public void replay(Stage stage){
+		startGameLoop(stage, true);
 
-
-
+	}
 
 
 	enum Direction {

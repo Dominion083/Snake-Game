@@ -2,7 +2,6 @@
 package com.DominionDMS.SnakeGame.Controllers;
 
 import com.DominionDMS.SnakeGame.Model.GameModel;
-import com.DominionDMS.SnakeGame.View.GameView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,18 +13,21 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.net.URI;
 
-public class ViewController {
+public class MenuController {
         @FXML
         private Button Start;
         @FXML
         private Button Leaderboard;
         @FXML
         private Button report;
+        @FXML
         private Button exitButton;
         @FXML
         private TextField nameText;
         @FXML
         private RadioButton Sound;
+        @FXML
+        private RadioButton SoundEffects;
         @FXML
         private MenuButton Difficulty;
         @FXML
@@ -42,19 +44,16 @@ public class ViewController {
         private MenuItem Christmas;
         @FXML
         private MenuItem Halloween;
-        static GameModel model;
+        static GameModel gameModel;
         static GameController controller;
 
-        private boolean theme = false;
-
         @FXML
-        private Button startButton; // Assuming there's a Start button in your FXML
-
         public static void initialise(GameController controller, GameModel model) {
-            ViewController.controller = controller;
-            ViewController.model = model;
-        }
+            MenuController.controller = controller;
+            MenuController.gameModel = model;
 
+
+        }
         @FXML
         private void gameSetup() {
             if (nameText.getText().trim().isEmpty()) {
@@ -65,55 +64,85 @@ public class ViewController {
                 alert.setContentText("Please enter your name before playing");
                 alert.showAndWait();
             } else {
-                if(model.getTheme()==0){
+                if (gameModel.getTheme() == 0) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Theme required");
                     alert.setHeaderText(null);
                     alert.setContentText("Please select a theme");
                     alert.showAndWait();
-                }
+                } else {
+                    if (gameModel.getLevel() == 0) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Level required");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Please select a level");
+                        alert.showAndWait();
+                    } else {
+                        Stage stage = (Stage) Start.getScene().getWindow();
+                        controller.startGameLoop(stage,false);
+                    }
 
-                else {
-                    Stage stage = (Stage) Start.getScene().getWindow();
-                    controller.startGameLoop(stage, model.getTheme());
                 }
-
             }
         }
         @FXML
         private void changeSound(ActionEvent event) {
             if (Sound.isSelected()) {
                 // Mute the game
-                controller.stopMusic();
+                gameModel.setMusic(true);
+                controller.playMusic();
             } else {
                 // Unmute the game
-               controller.playMusic();
+                gameModel.setMusic(false);
+               controller.stopMusic();
             }
         }
         @FXML
-        private void monochrome() {
-
+        private void changeSoundEffects(ActionEvent event) {
+            if (SoundEffects.isSelected()) {
+                // Mute the game
+                gameModel.setEffects(true);
+            } else {
+                // Unmute the game
+                gameModel.setEffects(false);
+            }
         }
+
+
         @FXML
         private void changeTheme(ActionEvent event) {
             if( event.getSource() == Summer ){
                 Theme.setText(Summer.getText());
-                model.setTheme(1);
+                gameModel.setTheme(1);
             }
             else if( event.getSource() == Christmas) {
                 Theme.setText(Christmas.getText());
-                model.setTheme(2);
+                gameModel.setTheme(2);
 
             }
             else if( event.getSource() == Halloween ) {
                 Theme.setText(Halloween.getText());
-                model.setTheme(3);
+                gameModel.setTheme(3);
 
             }
 
         }
         @FXML
-        private void changeLevel() {
+        private void changeLevel(ActionEvent event) {
+            if( event.getSource() == Easy ){
+                Difficulty.setText(Easy.getText());
+                gameModel.setLevel(1);
+            }
+            else if( event.getSource() == Medium) {
+                Difficulty.setText(Medium.getText());
+                gameModel.setLevel(2);
+
+            }
+            else if( event.getSource() == Hard) {
+                Difficulty.setText(Hard.getText());
+                gameModel.setLevel(3);
+
+            }
 
         }
         @FXML

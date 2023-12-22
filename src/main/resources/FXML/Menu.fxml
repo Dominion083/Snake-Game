@@ -6,6 +6,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,14 +16,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="560.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DominionDMS.SnakeGame.Controllers.ViewController">
+<AnchorPane prefHeight="560.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DominionDMS.SnakeGame.Controllers.MenuController">
    <children>
       <ImageView fitHeight="560.0" fitWidth="870.0">
          <image>
             <Image url="@../images/Food/MenuBackground.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="140.0" layoutY="14.0" prefHeight="117.0" prefWidth="591.0" text="SNAKE GAME">
+      <Label layoutX="129.0" layoutY="14.0" prefHeight="117.0" prefWidth="591.0" text="SNAKE GAME">
          <font>
             <Font name="Wingdings 2" size="96.0" />
          </font>
@@ -42,31 +44,55 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Button fx:id="Start" layoutX="272.0" layoutY="233.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="59.0" prefWidth="153.0" text="Start">
+      <Button fx:id="Start" layoutX="272.0" layoutY="233.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="59.0" prefWidth="112.0" text="Start">
          <font>
             <Font name="Yu Gothic Bold" size="24.0" />
          </font>
+         <effect>
+            <DropShadow radius="22.6525" width="71.61">
+               <color>
+                  <Color red="0.1298462152481079" green="0.9561403393745422" blue="0.1987040638923645" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
-      <Button fx:id="Leaderboard" layoutX="272.0" layoutY="332.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="51.0" prefWidth="189.0" text="Leaderboard" textFill="#170909">
+      <Button fx:id="Leaderboard" layoutX="272.0" layoutY="332.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="51.0" prefWidth="235.0" text="Leaderboard">
          <font>
             <Font name="Yu Gothic UI Bold" size="24.0" />
          </font>
+         <effect>
+            <DropShadow height="13.21" radius="17.785" width="59.93">
+               <color>
+                  <Color red="0.24074074625968933" green="1.0" blue="0.4938271641731262" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
-      <TextField fx:id="nameText" layoutX="358.0" layoutY="160.0" prefHeight="27.0" prefWidth="153.0">
+      <TextField fx:id="nameText" layoutX="358.0" layoutY="160.0" prefHeight="51.0" prefWidth="153.0">
          <font>
             <Font name="System Bold" size="24.0" />
-         </font></TextField>
-      <Button fx:id="report" layoutX="272.0" layoutY="412.0" mnemonicParsing="false" onAction="#report" prefHeight="35.0" prefWidth="189.0" text="Report a Bug" textFill="#170909">
+         </font>
+         <effect>
+            <DropShadow height="17.11" radius="14.379999999999999" width="42.41" />
+         </effect></TextField>
+      <Button fx:id="report" layoutX="272.0" layoutY="412.0" mnemonicParsing="false" onAction="#report" prefHeight="47.0" prefWidth="235.0" text="Need Help?" textFill="#170909">
          <font>
             <Font name="Yu Gothic Bold" size="24.0" />
          </font>
+         <effect>
+            <DropShadow height="34.63" radius="39.2" width="124.17">
+               <color>
+                  <Color red="0.04548408091068268" green="0.7368420958518982" blue="0.05700671300292015" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
       <Label layoutX="272.0" layoutY="169.0" minWidth="68.0" prefHeight="28.0" prefWidth="87.0" text="NAME:" textFill="#efff00">
          <font>
             <Font name="Yu Gothic UI Bold" size="23.0" />
          </font>
       </Label>
-      <MenuButton fx:id="Theme" layoutX="435.0" layoutY="230.0" mnemonicParsing="false" text="Theme">
+      <MenuButton fx:id="Theme" alignment="CENTER" layoutX="399.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Theme">
         <items>
           <MenuItem fx:id="Summer" mnemonicParsing="false" onAction="#changeTheme" text="Summer" />
           <MenuItem fx:id="Christmas" mnemonicParsing="false" onAction="#changeTheme" text="Christmas" />
@@ -75,13 +101,19 @@
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </MenuButton>
-      <RadioButton fx:id="Sound" layoutX="23.0" layoutY="418.0" mnemonicParsing="false" onAction="#changeSound" text="Sound">
+      <RadioButton fx:id="Sound" layoutX="30.0" layoutY="487.0" mnemonicParsing="false" onAction="#changeSound" prefHeight="34.0" prefWidth="112.0" selected="true" text="Music">
          <font>
-            <Font name="Yu Gothic UI Bold" size="24.0" />
+            <Font name="Yu Gothic UI Bold" size="22.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </RadioButton>
-      <MenuButton fx:id="Difficulty" layoutX="435.0" layoutY="267.0" mnemonicParsing="false" text="Difficulty">
+      <MenuButton fx:id="Difficulty" alignment="CENTER" layoutX="399.0" layoutY="267.0" mnemonicParsing="false" text="Difficulty">
          <items>
             <MenuItem fx:id="Easy" mnemonicParsing="false" onAction="#changeLevel" text="Easy" />
             <MenuItem fx:id="Medium" mnemonicParsing="false" onAction="#changeLevel" text="Medium" />
@@ -90,11 +122,29 @@
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </MenuButton>
-      <Button fx:id="exitButton" layoutX="28.0" layoutY="472.0" mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="101.0" text="Exit" textFill="#2f1010">
+      <Button fx:id="exitButton" layoutX="348.0" layoutY="483.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="101.0" text="Exit" textFill="#2f1010">
          <font>
-            <Font name="Yu Gothic Bold" size="24.0" />
+            <Font name="Yu Gothic Bold" size="22.0" />
          </font>
+         <effect>
+            <DropShadow height="22.95" radius="24.1125" width="75.5">
+               <color>
+                  <Color red="0.8157894611358643" green="0.09567901492118835" blue="0.09567901492118835" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
+      <RadioButton fx:id="SoundEffects" layoutX="30.0" layoutY="442.0" mnemonicParsing="false" onAction="#changeSoundEffects" prefHeight="34.0" prefWidth="197.0" selected="true" text="Sound effects">
+         <font>
+            <Font name="Yu Gothic UI Bold" size="22.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </RadioButton>
    </children>
 </AnchorPane>

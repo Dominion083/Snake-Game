@@ -13,25 +13,27 @@ public class SnakeModel {
     private int yPosition;
     private int width;
     private int height;
-    private int speedXY;
+    private int speedXY  = 5;
     private int length;
-    private int score = 0;
+    private int score;
     private int bodyNum;
     private boolean isAlive ;
+    private Image image = GameImageLoader.getImages().get("snake-body1");
 
-    private List<Point> bodyPoints = new LinkedList<>();
+    private List<Point> bodyPoints ;
 
 
     public void initialise(int x, int y){
         this.xPosition = x;
         this.yPosition = y;
-        Image image = GameImageLoader.getImages().get("snake-body1");
+        this.speedXY  = 5;
         this.width = (int) image.getWidth();
         this.height = (int) image.getHeight();
-        speedXY = 5;
         length = 1;
+        score =0;
         bodyNum = width / speedXY;
-        this.isAlive = true;
+        isAlive = true;
+        bodyPoints = new LinkedList<>();
 
     }
     public List<Point> getBodyPoints(){
@@ -46,6 +48,11 @@ public class SnakeModel {
     public void setyPosition(int y)
     {
         this.yPosition = y;
+
+    }
+    public void setScore(int score)
+    {
+        this.score = score;
 
     }
     public void setAlive(boolean x)

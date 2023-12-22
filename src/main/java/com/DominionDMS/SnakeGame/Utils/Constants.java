@@ -10,6 +10,15 @@ public class Constants {
         public static final int SNAKE_START_Y = 100;
         public static final int SNAKE_SCORE_X= 20;
         public static final int SNAKE_SCORE_Y= 40;
+        public static final int SNAKE_SCORE_XEND= 100;
+       public static final int SNAKE_SCORE_YEND= 120;
+        public static final int SNAKE_EASY_SPEED = 5;
+        public static final int SNAKE_MEDIUM_SPEED= 6;
+        public static final int SNAKE_DIFFICULT_SPEED = 7;
+        public static final int LEVEL2_BOMB_NUM = 8;
+        public static final int LEVEL3_BOMB_NUM = 15;
+
+
 
 
 

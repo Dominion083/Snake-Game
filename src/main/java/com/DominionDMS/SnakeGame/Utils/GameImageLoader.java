@@ -22,8 +22,9 @@ public class GameImageLoader {
 		IMAGES.put("snake-body2", GameImageUtil.getImage("/images/Snake/snake-body2.png"));
 		IMAGES.put("snake-body3", GameImageUtil.getImage("/images/Snake/snake-body2.png"));
 		IMAGES.put("snake-icon", GameImageUtil.getImage("/images/Objects/snake-logo.png"));
-		//animation
+		//animation and objects
 		IMAGES.put("boom", GameImageUtil.getImage("/images/Objects/boom.gif"));
+		IMAGES.put("bomb", GameImageUtil.getImage("/images/Objects/bomb.png"));
 		// food
 		IMAGES.put("0", GameImageUtil.getImage("/images/Food/food-kiwi.png"));
 		IMAGES.put("1", GameImageUtil.getImage("/images/Food/food-lemon.png"));

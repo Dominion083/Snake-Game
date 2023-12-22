@@ -1,5 +1,6 @@
 package com.DominionDMS.SnakeGame.View;
 
+import com.DominionDMS.SnakeGame.Bombs;
 import com.DominionDMS.SnakeGame.Controllers.GameController;
 import com.DominionDMS.SnakeGame.Controllers.MusicController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
@@ -7,21 +8,33 @@ import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import javafx.animation.PauseTransition;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.geometry.Insets;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.IOException;
 
 
 public class GameView extends Pane {
+	private static final int VBOX_SPACING = 10;
+	private static final int BUTTON_MIN_WIDTH = 200;
+	private static final int BUTTON_MIN_HEIGHT = 50;
+	private static final int PADDING_TOP = 10;
+	private static final int PADDING_RIGHT = 20;
+	private static final int PADDING_BOTTOM = 10;
+	private static final int PADDING_LEFT = 20;
 	private Canvas canvas;
 	private GameController controller;
 	private MusicController explosionSound;
@@ -33,46 +46,102 @@ public class GameView extends Pane {
 	private Image fail;
 	private Image boom;
 	private Image body;
+	private Image bombImage;
 	private ImageView explosionView;
+	private Bombs bombs;
 
 	private Image imgSnakeHead ;
 	private Image newimgSnakeHead;
+	private VBox pauseMenu;
 
+	private VBox endMenu;
+	private int level;
 
 
 	public void initialise(GameController controller, FoodModel fmodel, SnakeModel smodel) {
 		this.controller = controller;
 		this.foodModel = fmodel;
-		this.snakeModel = smodel; // Initialize with starting position
+		this.snakeModel = smodel;
+		pauseButton = new Button("||"); // Use a symbol or text for pause
+		pauseButton.setFont(Font.font("SansSerif", FontWeight.BOLD, 24));// A color that doesn't interfere much
+		pauseButton.setBackground(null); // Make the background of the button transparent
+		pauseButton.setLayoutX(Constants.GAME_WIDTH - 80); // Place it on the top right corner
+		pauseButton.setLayoutY(10);
+		pauseButton.setOnAction(event -> {
+			controller.pause();
+			pauseMenu.setVisible(true);
 
+		});
 
+		pauseMenu = new VBox(VBOX_SPACING); // VBox with spacing of 10
+		pauseMenu.setAlignment(Pos.CENTER); // Center align the buttons
+		pauseMenu.setVisible(false); // Initially invisible
 
-	}
-	public void setUp(int theme){
-		if (theme ==1) {
-			this.background =  GameImageLoader.getImages().get("background1");
-			this.body = GameImageLoader.getImages().get("snake-body1");
-			this.imgSnakeHead= GameImageLoader.getImages().get("snake-head1");
+		Button resumeButton = createStyledButton("Resume");
+		Button exitButton = createStyledButton("Exit");
+		Button mainMenuButton = createStyledButton("Main Menu");
+		pauseMenu.getChildren().addAll(resumeButton, exitButton, mainMenuButton);
 
+		resumeButton.setOnAction(event -> {
+			pauseMenu.setVisible(false);
+			controller.resume();
 
-		}
-		else if(theme == 2){
+		});
+		exitButton.setOnAction(event -> {
+			controller.exit();
 
-			this.background = GameImageLoader.getImages().get("background2");
-			this.body = GameImageLoader.getImages().get("snake-body2");
-			this.imgSnakeHead= GameImageLoader.getImages().get("snake-head2");
+		});
+		mainMenuButton.setOnAction(event -> {
+			try {
+				pauseMenu.setVisible(false);
+				Stage stage = (Stage) mainMenuButton.getScene().getWindow();
+				controller.mainMenu(stage);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 
-		}
-		else if(theme == 3) {
-			this.background = GameImageLoader.getImages().get("background3");
-			this.body = GameImageLoader.getImages().get("snake-body3");
-			this.imgSnakeHead= GameImageLoader.getImages().get("snake-head3");
+		});
 
-		}
+		pauseMenu.setLayoutX((double) Constants.GAME_WIDTH / 2 - 100); // Adjust as necessary
+		pauseMenu.setLayoutY((double) Constants.GAME_HEIGHT / 2 - 50);
+
+		endMenu = new VBox(VBOX_SPACING); // VBox with spacing of 10
+		endMenu.setAlignment(Pos.CENTER); // Center align the buttons
+		endMenu.setVisible(false); // Initially invisible
+
+		Button replayButton = createStyledButton("Play Again");
+		Button exitButton1 = createStyledButton("Exit");
+		Button mainMenuButton1 = createStyledButton("Main Menu");
+
+		endMenu.getChildren().addAll(replayButton, exitButton1, mainMenuButton1);
+
+		replayButton.setOnAction(event -> {
+			endMenu.setVisible(false);
+			Stage stage = (Stage) replayButton.getScene().getWindow();
+			controller.replay(stage);
+		});
+		exitButton1.setOnAction(event -> {
+			controller.exit();
+
+		});
+		mainMenuButton1.setOnAction(event -> {
+			try {
+				endMenu.setVisible(false);
+				Stage stage = (Stage) mainMenuButton1.getScene().getWindow();
+				controller.mainMenu(stage);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		});
+		endMenu.setLayoutX((double) Constants.GAME_WIDTH / 2 - 100); // Adjust as necessary
+		endMenu.setLayoutY((double) Constants.GAME_HEIGHT / 2 - 50);
+
 
 		fail = GameImageLoader.getImages().get("endgame");
 		boom = new Image(getClass().getResourceAsStream("/images/Objects/boom.gif"));
-		newimgSnakeHead = imgSnakeHead;
+		bombImage = GameImageLoader.getImages().get("bomb");
 		canvas = new Canvas(Constants.GAME_WIDTH, Constants.GAME_HEIGHT); // Set canvas size
 		explosionView = new ImageView(boom);
 		explosionView.setFitWidth(Constants.BOOM_WIDTH);  // Set the new width
@@ -81,48 +150,107 @@ public class GameView extends Pane {
 		explosionView.setVisible(false);
 		explosionSound = new MusicController("/music/explosion.mp3", false,false);
 
-		pauseButton = new Button("||"); // Use a symbol or text for pause
-		pauseButton.setFont(Font.font("SansSerif", FontWeight.BOLD, 24));// A color that doesn't interfere much
-		pauseButton.setBackground(null); // Make the background of the button transparent
-		pauseButton.setLayoutX(Constants.GAME_WIDTH - 80); // Place it on the top right corner
-		pauseButton.setLayoutY(10);
-		pauseButton.setOnAction(event -> {
-			controller.pause();
 
-		});
-		getChildren().addAll(canvas,explosionView,pauseButton);
+		getChildren().addAll(canvas,explosionView,pauseButton,pauseMenu,endMenu);
 		pauseButton.setFocusTraversable(false);
-		setFocusTraversable(true);
+
 
 
 
 
 	}
+	public void setUpTheme1() {
+		this.background = GameImageLoader.getImages().get("background1");
+		this.body = GameImageLoader.getImages().get("snake-body1");
+		this.imgSnakeHead = GameImageLoader.getImages().get("snake-head1");
+		refocus();
+
+	}
+	public void setUpTheme2() {
+
+			this.background = GameImageLoader.getImages().get("background2");
+			this.body = GameImageLoader.getImages().get("snake-body2");
+			this.imgSnakeHead = GameImageLoader.getImages().get("snake-head2");
+			refocus();
+
+	}
+	public void setUpTheme3() {
+
+		this.background = GameImageLoader.getImages().get("background3");
+		this.body = GameImageLoader.getImages().get("snake-body3");
+		this.imgSnakeHead= GameImageLoader.getImages().get("snake-head3");
+		refocus();
+
+	}
+	public void setUpLevel1(){
+
+		this.level = 1;
+		refocus();
+	}
+	public void setUpLevel2(){
+
+		bombs = new Bombs(Constants.LEVEL2_BOMB_NUM);
+		this.level = 2;
+		refocus();
+	}
+	public void setUpLevel3(){
+
+		bombs = new Bombs(Constants.LEVEL3_BOMB_NUM);
+		this.level = 3;
+		refocus();
+	}
+	public Bombs getBombs(){
+		return bombs;
+	}
 
 
 
-	public ImageView getExplosion(){
-		return explosionView;
+
+	public void refocus(){
+		pauseButton.setVisible(true);
+		newimgSnakeHead = imgSnakeHead;
+		requestFocus();
+		setFocusTraversable(true);
+
+	}
+
+	private Button createStyledButton(String text) {
+		Button button = new Button(text);
+		button.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+		button.setFont(new Font("Arial", 24)); // Set font size
+		button.setMinWidth(BUTTON_MIN_WIDTH); // Use constant for minimum width
+		button.setMinHeight(BUTTON_MIN_HEIGHT); // Use constant for minimum height
+		button.setPadding(new Insets(PADDING_TOP, PADDING_RIGHT, PADDING_BOTTOM, PADDING_LEFT));
+		return button;
 	}
 
 	public Image getSnakeHead(){
 		return imgSnakeHead;
 	}
-
+	public VBox getPauseMenu(){
+		return pauseMenu;
+	}
+	public VBox getEndMenu(){
+		return endMenu;
+	}
 	public void setSnakeHead(Image image){
 		newimgSnakeHead = image;
+	}
+	public void resetHead(){
+		newimgSnakeHead = imgSnakeHead;
 	}
 	public Image getSnakeBody(){
 		return body;
 	}
 
 	public void paint(boolean alive) {
-
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		if (alive) {
 			gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 			gc.drawImage((background), 0, 0,canvas.getWidth(),canvas.getHeight());
 			drawSnake(gc);
+			if (level ==2 || level == 3){
+			drawBombs(gc);}
 		} else {
 			handleGameOver(gc);
 		}
@@ -134,39 +262,45 @@ public class GameView extends Pane {
 		explosionView.setX(x);
 		explosionView.setY(y);
 		explosionView.setVisible(true);
-		explosionSound.play();
+		if (controller.effects()){
+		explosionSound.play();}
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
 		pause.setOnFinished(event -> showEndScreen(gc));
 		pause.play();
 	}
 	private void showEndScreen(GraphicsContext gc) {
-		explosionSound.stop();
 		gc.drawImage(fail,0,0,canvas.getWidth(),canvas.getHeight());
+		pauseButton.setVisible(false);
+		endMenu.setVisible(true);
 		explosionView.setVisible(false);
+
 
 	}
 
 	public void drawSnake(GraphicsContext gc) {
-		controller.isSnakeAlive();
 
 		int x = snakeModel.getxPosition();
 		int y = snakeModel.getyPosition();
 
-		snakeModel.getBodyPoints().add(new Point(x, y));
-		manageSnakeBody();
-
+		manageSnakeBody(x,y);
 		gc.drawImage(newimgSnakeHead, x, y);
 		drawBody(gc);
 		controller.move();
 	}
 
-	private void manageSnakeBody() {
+	private void manageSnakeBody(int x, int y) {
+		snakeModel.getBodyPoints().add(new Point(x, y));
 		if (snakeModel.getBodyPoints().size() == (snakeModel.getLength() + 1) * snakeModel.getBodyNum()) {
 			snakeModel.getBodyPoints().remove(0);
 		}
 	}
-
-	public void drawBody(GraphicsContext gc) {
+	public void drawBombs(GraphicsContext gc) {
+		for (Bombs.Bomb bomb : bombs.getBombs()) {
+			Point position = bomb.getPosition();
+			gc.drawImage(bombImage, position.x, position.y);
+		}
+	}
+	private void drawBody(GraphicsContext gc) {
 		int length = snakeModel.getBodyPoints().size() - 1 - snakeModel.getBodyNum();
 
 		for (int i = length; i >= snakeModel.getBodyNum(); i -= snakeModel.getBodyNum())
