@@ -1,31 +1,37 @@
 package com.DominionDMS.SnakeGame.Application;
 
 import com.DominionDMS.SnakeGame.Controllers.GameController;
+
+import com.DominionDMS.SnakeGame.Controllers.ViewController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
+import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import com.DominionDMS.SnakeGame.View.GameView;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.util.Duration;
 
 
 public class SnakeGame extends Application{
-    /*@Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Snake");
-        stage.setScene(scene);
-        stage.show();
-    }
- */
     GameView view;
     GameController controller;
+    GameModel gamemodel;
+    ViewController viewController;
     FoodModel foodmodel;
     SnakeModel snakemodel;
+    Scene scene;
+
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -33,24 +39,34 @@ public class SnakeGame extends Application{
         controller = new GameController();
         foodmodel = new FoodModel();
         snakemodel = new SnakeModel();
-        snakemodel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
-        controller.initialise(view,snakemodel,foodmodel);
-        view.initialise(controller,foodmodel,snakemodel);
+        gamemodel = new GameModel();
 
-        Scene scene = new Scene(view, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        stage.setScene(scene);
+
+        snakemodel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
+        controller.initialise(view,snakemodel,foodmodel,gamemodel);
+        view.initialise(controller,foodmodel,snakemodel);
+        ViewController.initialise(controller,gamemodel);
+
+
         Image icon = GameImageLoader.getImages().get("snake-icon");
+
+        FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("/FXML/Menu.fxml"));
+        scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Snake Yipee");
+        stage.setScene(scene);
+        stage.setResizable(false);
         stage.getIcons().add(icon);
-        scene.setOnKeyPressed(event -> controller.handleKeyPressed(event,snakemodel));
-        stage.setTitle("Snake Game");
+        controller.playMusic();
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+        });
         stage.show();
-        controller.startGameLoop();
 
 
 
     }
 
-    public static void main(String[] args)
+     public static void main(String[] args)
     {
 
         launch();

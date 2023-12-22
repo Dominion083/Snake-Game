@@ -25,7 +25,7 @@ public class SnakeModel {
     public void initialise(int x, int y){
         this.xPosition = x;
         this.yPosition = y;
-        Image image = GameImageLoader.getImages().get("snake-body");
+        Image image = GameImageLoader.getImages().get("snake-body1");
         this.width = (int) image.getWidth();
         this.height = (int) image.getHeight();
         speedXY = 5;

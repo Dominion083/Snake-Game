@@ -7,6 +7,7 @@ import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import javafx.animation.PauseTransition;
+import javafx.scene.control.Button;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -25,15 +26,18 @@ public class GameView extends Pane {
 	private GameController controller;
 	private MusicController explosionSound;
 	private SnakeModel snakeModel;
+	private Button pauseButton;
 	private FoodModel foodModel;
 	private Image background;
+
 	private Image fail;
 	private Image boom;
 	private Image body;
 	private ImageView explosionView;
-	private boolean end = false;
+
 	private Image imgSnakeHead ;
 	private Image newimgSnakeHead;
+
 
 
 	public void initialise(GameController controller, FoodModel fmodel, SnakeModel smodel) {
@@ -41,28 +45,59 @@ public class GameView extends Pane {
 		this.foodModel = fmodel;
 		this.snakeModel = smodel; // Initialize with starting position
 
-		background = GameImageLoader.getImages().get("background");
-		fail = GameImageLoader.getImages().get("endgame");
-		boom = new Image(getClass().getResourceAsStream("/images/boom.gif"));
-		imgSnakeHead= GameImageLoader.getImages().get("snake-head-right");
-		body = GameImageLoader.getImages().get("snake-body");
-		newimgSnakeHead = imgSnakeHead;
 
+
+	}
+	public void setUp(int theme){
+		if (theme ==1) {
+			this.background =  GameImageLoader.getImages().get("background1");
+			this.body = GameImageLoader.getImages().get("snake-body1");
+			this.imgSnakeHead= GameImageLoader.getImages().get("snake-head1");
+
+
+		}
+		else if(theme == 2){
+
+			this.background = GameImageLoader.getImages().get("background2");
+			this.body = GameImageLoader.getImages().get("snake-body2");
+			this.imgSnakeHead= GameImageLoader.getImages().get("snake-head2");
+
+		}
+		else if(theme == 3) {
+			this.background = GameImageLoader.getImages().get("background3");
+			this.body = GameImageLoader.getImages().get("snake-body3");
+			this.imgSnakeHead= GameImageLoader.getImages().get("snake-head3");
+
+		}
+
+		fail = GameImageLoader.getImages().get("endgame");
+		boom = new Image(getClass().getResourceAsStream("/images/Objects/boom.gif"));
+		newimgSnakeHead = imgSnakeHead;
 		canvas = new Canvas(Constants.GAME_WIDTH, Constants.GAME_HEIGHT); // Set canvas size
 		explosionView = new ImageView(boom);
 		explosionView.setFitWidth(Constants.BOOM_WIDTH);  // Set the new width
 		explosionView.setFitHeight(Constants.BOOM_HEIGHT); // Set the new height
 		explosionView.setPreserveRatio(true);
 		explosionView.setVisible(false);
-	    explosionSound = new MusicController("/music/explosion.mp3", false,false);
+		explosionSound = new MusicController("/music/explosion.mp3", false,false);
 
-		getChildren().addAll(canvas,explosionView);
+		pauseButton = new Button("||"); // Use a symbol or text for pause
+		pauseButton.setFont(Font.font("SansSerif", FontWeight.BOLD, 24));// A color that doesn't interfere much
+		pauseButton.setBackground(null); // Make the background of the button transparent
+		pauseButton.setLayoutX(Constants.GAME_WIDTH - 80); // Place it on the top right corner
+		pauseButton.setLayoutY(10);
+		pauseButton.setOnAction(event -> {
+			controller.pause();
 
+		});
+		getChildren().addAll(canvas,explosionView,pauseButton);
+		pauseButton.setFocusTraversable(false);
 		setFocusTraversable(true);
 
 
+
+
 	}
-	// Initialize and start music player
 
 
 
@@ -81,15 +116,12 @@ public class GameView extends Pane {
 		return body;
 	}
 
-
-
-
 	public void paint(boolean alive) {
+
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		if (alive) {
 			gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-			gc.drawImage(background, 0, 0);
-			end = false;
+			gc.drawImage((background), 0, 0,canvas.getWidth(),canvas.getHeight());
 			drawSnake(gc);
 		} else {
 			handleGameOver(gc);
@@ -106,7 +138,6 @@ public class GameView extends Pane {
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
 		pause.setOnFinished(event -> showEndScreen(gc));
 		pause.play();
-		end = true;
 	}
 	private void showEndScreen(GraphicsContext gc) {
 		explosionSound.stop();
@@ -156,9 +187,6 @@ public class GameView extends Pane {
 	}
 
 
-	public boolean getEndScreen() {
-      return end;
-	}
 
 
 
