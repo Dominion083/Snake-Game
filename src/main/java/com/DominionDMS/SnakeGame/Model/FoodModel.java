@@ -1,5 +1,6 @@
 package com.DominionDMS.SnakeGame.Model;
 
+import com.DominionDMS.SnakeGame.Bombs;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import javafx.geometry.Rectangle2D;
@@ -19,18 +20,30 @@ public class FoodModel  {
 	private boolean eaten;
 
 	public FoodModel() {
-      initialise();
+
 	}
 
-	public void initialise() {
+	public void initialise(Bombs bombs) {
 		this.image = GameImageLoader.getImages().get(String.valueOf(random.nextInt(16)));
 		this.width = (int) image.getWidth();
 		this.height = (int) image.getHeight();
 		this.eaten = false;
 		int maxWidth = Constants.GAME_WIDTH - width; // Width of game board boundary
 		int maxHeight = Constants.GAME_HEIGHT - height; // Height of game board boundary
-		this.x = random.nextInt(maxWidth);
-		this.y = random.nextInt(maxHeight);
+		if(bombs==null){
+			do {
+				this.x = random.nextInt(Constants.GAME_WIDTH - width);
+				this.y = random.nextInt(Constants.GAME_HEIGHT - height);
+				// Adjust for score area, if needed
+			} while(x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND);
+		}
+		else {
+			do {
+				this.x = random.nextInt(Constants.GAME_WIDTH - width);
+				this.y = random.nextInt(Constants.GAME_HEIGHT - height);
+				// Adjust for score area, if needed
+			} while (bombs.overlapsWithBomb(x, y) || (x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND));
+		}
 	}
 
 	public boolean isEaten() {
