@@ -15,11 +15,15 @@ public class GameImageLoader {
 
 	private static void loadImages() {
 		// snake
-		IMAGES.put("snake-head-right", GameImageUtil.getImage("/images/snake-head-right.png"));
-		IMAGES.put("snake-body", GameImageUtil.getImage("/images/snake-bodyyy.png"));
-		IMAGES.put("snake-icon", GameImageUtil.getImage("/images/snake-logo.png"));
+		IMAGES.put("snake-head1", GameImageUtil.getImage("/images/Snake/snake-head1.png"));
+		IMAGES.put("snake-head2", GameImageUtil.getImage("/images/Snake/snake-head2.png"));
+		IMAGES.put("snake-head3", GameImageUtil.getImage("/images/Snake/snake-head3.png"));
+		IMAGES.put("snake-body1", GameImageUtil.getImage("/images/Snake/snake-body1.png"));
+		IMAGES.put("snake-body2", GameImageUtil.getImage("/images/Snake/snake-body2.png"));
+		IMAGES.put("snake-body3", GameImageUtil.getImage("/images/Snake/snake-body2.png"));
+		IMAGES.put("snake-icon", GameImageUtil.getImage("/images/Objects/snake-logo.png"));
 		//animation
-		IMAGES.put("boom", GameImageUtil.getImage("/images/boom.gif"));
+		IMAGES.put("boom", GameImageUtil.getImage("/images/Objects/boom.gif"));
 		// food
 		IMAGES.put("0", GameImageUtil.getImage("/images/Food/food-kiwi.png"));
 		IMAGES.put("1", GameImageUtil.getImage("/images/Food/food-lemon.png"));
@@ -38,8 +42,10 @@ public class GameImageLoader {
 		IMAGES.put("14", GameImageUtil.getImage("/images/Food/food-pineapple.png"));
 		IMAGES.put("15", GameImageUtil.getImage("/images/Food/food-strawberry.png"));
 		IMAGES.put("16", GameImageUtil.getImage("/images/Food/food-watermelon.png"));
-		IMAGES.put("background", GameImageUtil.getImage("/images/UI-background.png"));
-		IMAGES.put("endgame", GameImageUtil.getImage("/images/end.png"));
+		IMAGES.put("background1", GameImageUtil.getImage("/images/Background/Game-background1.png"));
+		IMAGES.put("background2", GameImageUtil.getImage("/images/Background/Game-background2.png"));
+		IMAGES.put("background3", GameImageUtil.getImage("/images/Background/Game-background3.png"));
+		IMAGES.put("endgame", GameImageUtil.getImage("/images/Food/end.png"));
 
 	}
 

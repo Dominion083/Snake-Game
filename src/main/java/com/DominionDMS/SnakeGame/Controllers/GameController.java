@@ -7,6 +7,7 @@ import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -59,11 +60,12 @@ public class GameController
 			}
 		}
 	};
-	public void startGameLoop(Stage stage) {
+	public void startGameLoop(Stage stage,int theme) {
+		view.setUp(theme);
 	    Scene scene = new Scene(view, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 		stage.setScene(scene);
 		scene.setOnKeyPressed(event -> handleKeyPressed(event,snakeModel));
-		musicController = new MusicController("/music/frogger.mp3", true,true);
+
 		musicController1 = new MusicController("/music/munch.mp3" ,false,false);
 		gameLoopTimer.start();
 	}
@@ -90,14 +92,20 @@ public class GameController
 			view.paint(false);
 			gamemodel.setEndStatus(true);
 			view.drawScore(snakeModel);
-			musicController.stop();
 			musicController1.stop();
+			stopMusic();
 			gameLoopTimer.stop();
 
 		}
 
 
 	}
+
+	public void playMusic(){
+		musicController = new MusicController("/music/frogger.mp3", true,true);
+
+	}
+
 
 
 	public void handleKeyPressed(KeyEvent event, SnakeModel snakeModel) {
@@ -204,6 +212,20 @@ public class GameController
        return gamemodel.endStatus();
 
 	}
+	public void stopMusic(){
+		musicController.stop();
+	}
+	public void exit(){
+		Platform.exit();
+	}
+	public void pause(){
+		gameLoopTimer.stop();
+
+	}
+
+
+
+
 
 
 

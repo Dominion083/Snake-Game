@@ -12,6 +12,7 @@ import com.DominionDMS.SnakeGame.View.GameView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -55,7 +56,12 @@ public class SnakeGame extends Application{
         stage.setScene(scene);
         stage.setResizable(false);
         stage.getIcons().add(icon);
+        controller.playMusic();
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+        });
         stage.show();
+
 
 
     }
