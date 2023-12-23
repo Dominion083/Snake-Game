@@ -1,9 +1,12 @@
 
 package com.DominionDMS.SnakeGame.Controllers;
 
+import com.DominionDMS.SnakeGame.Application.SnakeGame;
 import com.DominionDMS.SnakeGame.Model.GameModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
@@ -11,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URI;
 
 public class MenuController {
@@ -33,11 +37,11 @@ public class MenuController {
         @FXML
         private MenuButton Theme;
         @FXML
-        private MenuItem Hard;
+        private MenuItem Professional;
         @FXML
-        private MenuItem Medium;
+        private MenuItem Intermediate;
         @FXML
-        private MenuItem Easy;
+        private MenuItem Beginner;
         @FXML
         private MenuItem Summer;
         @FXML
@@ -78,6 +82,7 @@ public class MenuController {
                         alert.setContentText("Please select a level");
                         alert.showAndWait();
                     } else {
+                        gameModel.setName(nameText.getText().trim());
                         Stage stage = (Stage) Start.getScene().getWindow();
                         controller.startGameLoop(stage,false);
                     }
@@ -107,6 +112,13 @@ public class MenuController {
                 gameModel.setEffects(false);
             }
         }
+        @FXML
+        private void initialiseLeaderboard(ActionEvent event) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("/FXML/HighScores.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) Leaderboard.getScene().getWindow();
+            stage.setScene(scene);
+        }
 
 
         @FXML
@@ -129,26 +141,23 @@ public class MenuController {
         }
         @FXML
         private void changeLevel(ActionEvent event) {
-            if( event.getSource() == Easy ){
-                Difficulty.setText(Easy.getText());
+            if( event.getSource() == Beginner ){
+                Difficulty.setText(Beginner.getText());
                 gameModel.setLevel(1);
             }
-            else if( event.getSource() == Medium) {
-                Difficulty.setText(Medium.getText());
+            else if( event.getSource() == Intermediate) {
+                Difficulty.setText(Intermediate.getText());
                 gameModel.setLevel(2);
 
             }
-            else if( event.getSource() == Hard) {
-                Difficulty.setText(Hard.getText());
+            else if( event.getSource() == Professional) {
+                Difficulty.setText(Professional.getText());
                 gameModel.setLevel(3);
 
             }
 
         }
-        @FXML
-        private void setTheme() {
 
-        }
     @FXML
     private void exit() {
      controller.exit();
@@ -163,7 +172,6 @@ public class MenuController {
             ex.printStackTrace();
         }
     }
-
 
 
 

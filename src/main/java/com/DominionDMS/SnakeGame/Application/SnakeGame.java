@@ -2,6 +2,7 @@ package com.DominionDMS.SnakeGame.Application;
 
 import com.DominionDMS.SnakeGame.Controllers.GameController;
 
+import com.DominionDMS.SnakeGame.Controllers.HighScoreController;
 import com.DominionDMS.SnakeGame.Controllers.MenuController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
@@ -23,6 +24,7 @@ public class SnakeGame extends Application{
     GameModel gamemodel;
     FoodModel foodmodel;
     SnakeModel snakemodel;
+    HighScoreController scoreController;
     static Scene scene;
 
 
@@ -34,13 +36,12 @@ public class SnakeGame extends Application{
         foodmodel = new FoodModel();
         snakemodel = new SnakeModel();
         gamemodel = new GameModel();
-
-
+        scoreController = new HighScoreController();
+        scoreController.create();
         snakemodel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
         controller.initialise(view,snakemodel,foodmodel,gamemodel);
         view.initialise(controller,foodmodel,snakemodel);
         MenuController.initialise(controller,gamemodel);
-
 
 
         Image icon = GameImageLoader.getImages().get("snake-icon");
@@ -60,7 +61,7 @@ public class SnakeGame extends Application{
 
 
     }
-    public static Scene returnScene(){
+    public static Scene returnStartScene(){
         return scene;
     }
 
