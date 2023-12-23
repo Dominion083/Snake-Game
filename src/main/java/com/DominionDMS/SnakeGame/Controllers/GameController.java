@@ -129,16 +129,19 @@ public class GameController
 				this.level = "Beginner";
 				view.setUpLevel1();
 				snakeModel.setSpeed(Constants.SNAKE_EASY_SPEED);
+				foodModel.setPoints(Constants.EASY_POINTS);
 				break;
 			case 2:
 				this.level = "Intermediate";
 				view.setUpLevel2();
 				snakeModel.setSpeed(Constants.SNAKE_MEDIUM_SPEED);
+				foodModel.setPoints(Constants.INTERMEDIATE_POINTS);
 				break;
 			case 3:
 				this.level = "Professional";
 				view.setUpLevel3();
 				snakeModel.setSpeed(Constants.SNAKE_DIFFICULT_SPEED);
+				foodModel.setPoints(Constants.PROFESSIONAL_POINTS);
 				break;
 
 		}

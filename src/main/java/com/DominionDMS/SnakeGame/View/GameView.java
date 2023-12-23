@@ -68,8 +68,8 @@ public class GameView extends Pane {
 		pauseButton = new Button("||"); // Use a symbol or text for pause
 		pauseButton.setFont(Font.font("SansSerif", FontWeight.BOLD, 24));// A color that doesn't interfere much
 		pauseButton.setBackground(null); // Make the background of the button transparent
-		pauseButton.setLayoutX(Constants.GAME_WIDTH - 80); // Place it on the top right corner
-		pauseButton.setLayoutY(10);
+		pauseButton.setLayoutX(Constants.PAUSE_X); // Place it on the top right corner
+		pauseButton.setLayoutY(Constants.PAUSE_Y);
 		pauseButton.setOnAction(event -> {
 			controller.pause();
 			pauseMenu.setVisible(true);
@@ -140,6 +140,7 @@ public class GameView extends Pane {
 
 		});
 	    leaderBoardButton.setOnAction(event -> {
+			endMenu.setVisible(false);
 			FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("/FXML/HighScores.fxml"));
 			Scene scene = null;
 			try {

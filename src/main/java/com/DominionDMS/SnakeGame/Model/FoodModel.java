@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class FoodModel  {
 
-	private static int points = 10;
+	private static int points ;
 	private static final Random random = new Random();
 	private int x;
 	private int y;
@@ -35,7 +35,7 @@ public class FoodModel  {
 				this.x = random.nextInt(Constants.GAME_WIDTH - width);
 				this.y = random.nextInt(Constants.GAME_HEIGHT - height);
 				// Adjust for score area, if needed
-			} while(x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND);
+			} while(x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND ||( (x>= Constants.PAUSE_X && y <= (Constants.PAUSE_Y + height))));
 		}
 		else {
 			do {
@@ -53,8 +53,6 @@ public class FoodModel  {
 	public void setEaten(boolean x) {
 		eaten = x;
 	}
-
-
 
 	public int getPoints() {
 		return points;
