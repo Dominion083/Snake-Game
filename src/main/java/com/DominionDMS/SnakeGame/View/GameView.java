@@ -1,5 +1,6 @@
 package com.DominionDMS.SnakeGame.View;
 
+import com.DominionDMS.SnakeGame.Application.SnakeGame;
 import com.DominionDMS.SnakeGame.Bombs;
 import com.DominionDMS.SnakeGame.Controllers.GameController;
 import com.DominionDMS.SnakeGame.Controllers.MusicController;
@@ -8,7 +9,9 @@ import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import javafx.animation.PauseTransition;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -112,8 +115,9 @@ public class GameView extends Pane {
 		Button replayButton = createStyledButton("Play Again");
 		Button exitButton1 = createStyledButton("Exit");
 		Button mainMenuButton1 = createStyledButton("Main Menu");
+		Button leaderBoardButton = createStyledButton("LeaderBoard");
 
-		endMenu.getChildren().addAll(replayButton, exitButton1, mainMenuButton1);
+		endMenu.getChildren().addAll(replayButton, mainMenuButton1,leaderBoardButton,exitButton1);
 
 		replayButton.setOnAction(event -> {
 			endMenu.setVisible(false);
@@ -133,6 +137,18 @@ public class GameView extends Pane {
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
+
+		});
+	    leaderBoardButton.setOnAction(event -> {
+			FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("/FXML/HighScores.fxml"));
+			Scene scene = null;
+			try {
+				scene = new Scene(fxmlLoader.load());
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			Stage stage = (Stage) replayButton.getScene().getWindow();
+			stage.setScene(scene);
 
 		});
 		endMenu.setLayoutX((double) Constants.GAME_WIDTH / 2 - 100); // Adjust as necessary
@@ -278,7 +294,7 @@ public class GameView extends Pane {
 	}
 
 	public void drawSnake(GraphicsContext gc) {
-
+		controller.isSnakeAlive();
 		int x = snakeModel.getxPosition();
 		int y = snakeModel.getyPosition();
 

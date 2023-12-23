@@ -1,8 +1,10 @@
 package com.DominionDMS.SnakeGame.Model;
 
 public class GameModel {
+
     private int level = 0;
     private int theme = 0;
+    private String Playername;
     private boolean effects = true;
     private boolean music = true;
 
@@ -18,7 +20,12 @@ public class GameModel {
     public void setEffects(boolean status) {
         this.effects = status;
     }
-    public boolean getMusic() {return music;}
+    public void setName(String name) {
+        this.Playername = name;
+    }
+    public String getName() {
+        return Playername;
+    }
     public boolean getEfects() {
         return effects;
     }

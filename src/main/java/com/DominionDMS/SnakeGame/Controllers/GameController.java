@@ -4,6 +4,7 @@ import com.DominionDMS.SnakeGame.Application.SnakeGame;
 import com.DominionDMS.SnakeGame.Bombs;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Utils.GameImageUtil;
+import com.DominionDMS.SnakeGame.Utils.ScoreEntry;
 import com.DominionDMS.SnakeGame.View.GameView;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Model.GameModel;
@@ -36,11 +37,11 @@ public class GameController
 	private FoodModel foodModel;
 	private GameModel gamemodel;
 
+	private String level;
+	private final HighScoreController scoreController = new HighScoreController();
 	private MusicController musicController1;
-
 	private MusicController musicController;
-
-    private Scene scene;
+	private Scene scene;
 
 
 
@@ -78,7 +79,6 @@ public class GameController
 
 
 	private void Loop() throws IOException {
-		isSnakeAlive();
 		if (snakeModel.isAlive()) {
 			view.paint(true);
 
@@ -97,8 +97,12 @@ public class GameController
 		} else {
 			view.paint(false);
 			view.drawScore(snakeModel);
-			resetGame();
 			gameLoopTimer.stop();
+			ScoreEntry newScore = new ScoreEntry(gamemodel.getName(), snakeModel.getScore(), level);
+			scoreController.create();
+			scoreController.checkAndAddScore(newScore);
+			resetGame();
+
 
 		}
 
@@ -122,14 +126,17 @@ public class GameController
 		public void setLevel(int level){
 		switch (level){
 			case 1:
+				this.level = "Beginner";
 				view.setUpLevel1();
 				snakeModel.setSpeed(Constants.SNAKE_EASY_SPEED);
 				break;
 			case 2:
+				this.level = "Intermediate";
 				view.setUpLevel2();
 				snakeModel.setSpeed(Constants.SNAKE_MEDIUM_SPEED);
 				break;
 			case 3:
+				this.level = "Professional";
 				view.setUpLevel3();
 				snakeModel.setSpeed(Constants.SNAKE_DIFFICULT_SPEED);
 				break;
@@ -270,7 +277,7 @@ public class GameController
 		return gamemodel.getEfects();
 	}
 	public void mainMenu(Stage stage) throws IOException {
-		stage.setScene(SnakeGame.returnScene());
+		stage.setScene(SnakeGame.returnStartScene());
 
 	}
 	public void pause(){

@@ -43,6 +43,13 @@
                </stops>
             </RadialGradient>
          </textFill>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.016948234289884567" green="0.017543859779834747" blue="0.01703757792711258" />
+               </color>
+            </DropShadow>
+         </effect>
       </Label>
       <Button fx:id="Start" layoutX="272.0" layoutY="233.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="59.0" prefWidth="112.0" text="Start">
          <font>
@@ -56,7 +63,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="Leaderboard" layoutX="272.0" layoutY="332.0" mnemonicParsing="false" onAction="#gameSetup" prefHeight="51.0" prefWidth="235.0" text="Leaderboard">
+      <Button fx:id="Leaderboard" layoutX="272.0" layoutY="332.0" mnemonicParsing="false" onAction="#initialiseLeaderboard" prefHeight="51.0" prefWidth="235.0" text="Leaderboard">
          <font>
             <Font name="Yu Gothic UI Bold" size="24.0" />
          </font>
@@ -68,7 +75,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <TextField fx:id="nameText" layoutX="358.0" layoutY="160.0" prefHeight="51.0" prefWidth="153.0">
+      <TextField fx:id="nameText" layoutX="358.0" layoutY="164.0" prefHeight="51.0" prefWidth="153.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -92,7 +99,7 @@
             <Font name="Yu Gothic UI Bold" size="23.0" />
          </font>
       </Label>
-      <MenuButton fx:id="Theme" alignment="CENTER" layoutX="399.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Theme">
+      <MenuButton fx:id="Theme" alignment="CENTER" layoutX="399.0" layoutY="233.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" text="Theme">
         <items>
           <MenuItem fx:id="Summer" mnemonicParsing="false" onAction="#changeTheme" text="Summer" />
           <MenuItem fx:id="Christmas" mnemonicParsing="false" onAction="#changeTheme" text="Christmas" />
@@ -102,7 +109,11 @@
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
          <effect>
-            <DropShadow />
+            <DropShadow height="30.73" radius="14.379999999999999" width="28.79">
+               <color>
+                  <Color red="0.08165475726127625" green="0.9122806787490845" blue="0.41390514373779297" />
+               </color>
+            </DropShadow>
          </effect>
       </MenuButton>
       <RadioButton fx:id="Sound" layoutX="30.0" layoutY="487.0" mnemonicParsing="false" onAction="#changeSound" prefHeight="34.0" prefWidth="112.0" selected="true" text="Music">
@@ -110,23 +121,34 @@
             <Font name="Yu Gothic UI Bold" size="22.0" />
          </font>
          <effect>
-            <InnerShadow />
+            <InnerShadow>
+               <color>
+                  <Color red="0.2017543911933899" green="0.059779077768325806" blue="0.059779077768325806" />
+               </color>
+               <input>
+                  <DropShadow />
+               </input>
+            </InnerShadow>
          </effect>
       </RadioButton>
-      <MenuButton fx:id="Difficulty" alignment="CENTER" layoutX="399.0" layoutY="267.0" mnemonicParsing="false" text="Difficulty">
+      <MenuButton fx:id="Difficulty" alignment="CENTER" layoutX="399.0" layoutY="267.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" text="Difficulty">
          <items>
-            <MenuItem fx:id="Easy" mnemonicParsing="false" onAction="#changeLevel" text="Easy" />
-            <MenuItem fx:id="Medium" mnemonicParsing="false" onAction="#changeLevel" text="Medium" />
-            <MenuItem fx:id="Hard" mnemonicParsing="false" onAction="#changeLevel" text="Hard" />
+            <MenuItem fx:id="Beginner" mnemonicParsing="false" onAction="#changeLevel" text="Beginner" />
+            <MenuItem fx:id="Intermediate" mnemonicParsing="false" onAction="#changeLevel" text="Intermediate" />
+            <MenuItem fx:id="Professional" mnemonicParsing="false" onAction="#changeLevel" text="Professional" />
          </items>
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
          <effect>
-            <DropShadow />
+            <DropShadow>
+               <color>
+                  <Color red="0.018518518656492233" green="1.0" blue="0.1657407432794571" />
+               </color>
+            </DropShadow>
          </effect>
       </MenuButton>
-      <Button fx:id="exitButton" layoutX="348.0" layoutY="483.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="101.0" text="Exit" textFill="#2f1010">
+      <Button fx:id="exitButton" layoutX="339.0" layoutY="483.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="101.0" text="Exit" textFill="#2f1010">
          <font>
             <Font name="Yu Gothic Bold" size="22.0" />
          </font>
@@ -143,7 +165,10 @@
             <Font name="Yu Gothic UI Bold" size="22.0" />
          </font>
          <effect>
-            <InnerShadow />
+            <InnerShadow>
+               <input>
+                  <DropShadow />
+               </input></InnerShadow>
          </effect>
       </RadioButton>
    </children>
