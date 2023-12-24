@@ -1,7 +1,7 @@
 package com.DominionDMS.SnakeGame.View;
 
 import com.DominionDMS.SnakeGame.Application.SnakeGame;
-import com.DominionDMS.SnakeGame.Bombs;
+import com.DominionDMS.SnakeGame.Model.BombModel;
 import com.DominionDMS.SnakeGame.Controllers.GameController;
 import com.DominionDMS.SnakeGame.Controllers.MusicController;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
@@ -51,7 +51,7 @@ public class GameView extends Pane {
 	private Image body;
 	private Image bombImage;
 	private ImageView explosionView;
-	private Bombs bombs;
+	private BombModel bombs;
 
 	private Image imgSnakeHead ;
 	private Image newimgSnakeHead;
@@ -206,17 +206,17 @@ public class GameView extends Pane {
 	}
 	public void setUpLevel2(){
 
-		bombs = new Bombs(Constants.LEVEL2_BOMB_NUM);
+		bombs = new BombModel(Constants.LEVEL2_BOMB_NUM);
 		this.level = 2;
 		refocus();
 	}
 	public void setUpLevel3(){
 
-		bombs = new Bombs(Constants.LEVEL3_BOMB_NUM);
+		bombs = new BombModel(Constants.LEVEL3_BOMB_NUM);
 		this.level = 3;
 		refocus();
 	}
-	public Bombs getBombs(){
+	public BombModel getBombs(){
 		return bombs;
 	}
 
@@ -312,7 +312,7 @@ public class GameView extends Pane {
 		}
 	}
 	public void drawBombs(GraphicsContext gc) {
-		for (Bombs.Bomb bomb : bombs.getBombs()) {
+		for (BombModel.Bomb bomb : bombs.getBombs()) {
 			Point position = bomb.getPosition();
 			gc.drawImage(bombImage, position.x, position.y);
 		}

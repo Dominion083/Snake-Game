@@ -1,10 +1,9 @@
 package com.DominionDMS.SnakeGame.Controllers;
 
 import com.DominionDMS.SnakeGame.Application.SnakeGame;
-import com.DominionDMS.SnakeGame.Bombs;
+import com.DominionDMS.SnakeGame.Model.BombModel;
 import com.DominionDMS.SnakeGame.Model.FoodModel;
 import com.DominionDMS.SnakeGame.Utils.GameImageUtil;
-import com.DominionDMS.SnakeGame.Utils.ScoreEntry;
 import com.DominionDMS.SnakeGame.View.GameView;
 import com.DominionDMS.SnakeGame.Model.SnakeModel;
 import com.DominionDMS.SnakeGame.Model.GameModel;
@@ -98,7 +97,7 @@ public class GameController
 			view.paint(false);
 			view.drawScore(snakeModel);
 			gameLoopTimer.stop();
-			ScoreEntry newScore = new ScoreEntry(gamemodel.getName(), snakeModel.getScore(), level);
+			GameImageUtil.ScoreEntry newScore = new GameImageUtil.ScoreEntry(gamemodel.getName(), snakeModel.getScore(), level);
 			scoreController.create();
 			scoreController.checkAndAddScore(newScore);
 			resetGame();
@@ -225,7 +224,7 @@ public class GameController
 	}
 	public void checkBombCollision() {
 		if (snakeModel.getLength() > 1) {
-			for (Bombs.Bomb bomb : view.getBombs().getBombs()) {
+			for (BombModel.Bomb bomb : view.getBombs().getBombs()) {
 				if (snakeModel.getRectangle().intersects(bomb.getRectangle()) && snakeModel.isAlive()) {
 					snakeModel.setAlive(false);
 					break;

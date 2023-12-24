@@ -1,31 +1,25 @@
 package com.DominionDMS.SnakeGame.Controllers;
 import com.DominionDMS.SnakeGame.Application.SnakeGame;
-import com.DominionDMS.SnakeGame.Model.GameModel;
-import com.DominionDMS.SnakeGame.Model.GameModel;
 import com.DominionDMS.SnakeGame.Model.Leaderboard;
-import com.DominionDMS.SnakeGame.Utils.Constants;
-import com.DominionDMS.SnakeGame.Utils.ScoreEntry;
+import com.DominionDMS.SnakeGame.Utils.GameImageUtil;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Comparator;
 
 
 public class HighScoreController {
 
     @FXML private Button Back;
-    @FXML private TableView<ScoreEntry> scoreTable;
-    @FXML private TableColumn<ScoreEntry, String> nameColumn;
-    @FXML private TableColumn<ScoreEntry, Integer> scoreColumn;
-    @FXML private TableColumn<ScoreEntry, String> levelColumn;
+    @FXML private TableView<GameImageUtil.ScoreEntry> scoreTable;
+    @FXML private TableColumn<GameImageUtil.ScoreEntry, String> nameColumn;
+    @FXML private TableColumn<GameImageUtil.ScoreEntry, Integer> scoreColumn;
+    @FXML private TableColumn<GameImageUtil.ScoreEntry, String> levelColumn;
 
     private static Leaderboard leaderboard ;
     private static boolean create;
@@ -61,7 +55,7 @@ public class HighScoreController {
         scoreTable.setItems(FXCollections.observableArrayList(leaderboard.getTopScores()));
     }
     @FXML
-    public void checkAndAddScore(ScoreEntry newEntry) {
+    public void checkAndAddScore(GameImageUtil.ScoreEntry newEntry) {
         // Add the new score
         leaderboard.addScore(newEntry);
 

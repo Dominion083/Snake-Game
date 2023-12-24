@@ -1,4 +1,4 @@
-package com.DominionDMS.SnakeGame;
+package com.DominionDMS.SnakeGame.Model;
 
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class Bombs {
+public class BombModel {
     private int x;
     private int y;
     private Image image;
@@ -21,7 +21,7 @@ public class Bombs {
     private List<Bomb> bombs = new ArrayList<>();
     private Random random = new Random();
 
-    public Bombs(int num){
+    public BombModel(int num){
         bombs = new LinkedList<>();
         this.image = GameImageLoader.getImages().get("bomb");
         this.width = (int) image.getWidth();

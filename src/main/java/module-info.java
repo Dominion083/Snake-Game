@@ -16,8 +16,7 @@ module com.DominionDMS.SnakeGame {
     requires java.logging;
 
 
-    opens com.DominionDMS.SnakeGame to javafx.fxml;
-    exports com.DominionDMS.SnakeGame;
+
     exports com.DominionDMS.SnakeGame.Utils;
     opens com.DominionDMS.SnakeGame.Utils to javafx.fxml;
     exports com.DominionDMS.SnakeGame.Controllers;
@@ -28,5 +27,6 @@ module com.DominionDMS.SnakeGame {
     opens com.DominionDMS.SnakeGame.View to javafx.fxml;
     exports com.DominionDMS.SnakeGame.Application;
     opens com.DominionDMS.SnakeGame.Application to javafx.fxml;
+
 
 }

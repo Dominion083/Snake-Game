@@ -1,6 +1,5 @@
 package com.DominionDMS.SnakeGame.Model;
 
-import com.DominionDMS.SnakeGame.Bombs;
 import com.DominionDMS.SnakeGame.Utils.GameImageLoader;
 import com.DominionDMS.SnakeGame.Utils.Constants;
 import javafx.geometry.Rectangle2D;
@@ -23,7 +22,7 @@ public class FoodModel  {
 
 	}
 
-	public void initialise(Bombs bombs) {
+	public void initialise(BombModel bombs) {
 		this.image = GameImageLoader.getImages().get(String.valueOf(random.nextInt(16)));
 		this.width = (int) image.getWidth();
 		this.height = (int) image.getHeight();
