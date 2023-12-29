@@ -1,6 +1,5 @@
 ## Understanding of the code
 <details>
-  
 <summary>Questions</summary>
 
 ### Movement Logic:
@@ -202,4 +201,41 @@
 | Unstructured code, comments are not detailed                          | Refactor the code structure, add detailed comments explaining major sections and logic.                            |
 | Classes are doing too much and not following coding conventions       | Refactor the code to adhere to coding conventions, and consider breaking down classes into smaller, focused units. |
 
+</details>
+
+<details>
+<summary>Testing</summary>
+
+### Overview
+This document summarizes the results of user testing conducted for the Snake Game application. The tests focused on evaluating the game's usability, functionality, and overall player experience.
+
+### Test Summary
+- **Number of Testers**: 4
+- **Methodology**: Users played the game and provided feedback on various aspects, including gameplay, controls, graphics, and any encountered bugs.
+
+### Key Areas of Testing
+1. **Gameplay Mechanics**: Testers evaluated the responsiveness of the snake's movements, the game's difficulty progression, and the effectiveness of game controls.
+2. **User Interface**: The clarity and intuitiveness of the game's interface were assessed, including the main menu, settings, and in-game displays.
+3. **Graphics and Sound**: Testers provided feedback on the game's visual appeal, including themes and animations, as well as the quality of sound effects and background music.
+4. **Performance**: Assessment of the game's performance, particularly focusing on any lag, crashes, or bugs encountered during play.
+5. **Overall Experience**: Testers rated their overall satisfaction and enjoyment while playing the game.
+
+### Key Findings
+1. **Gameplay**: The gameplay was generally well-received, with users appreciating the smooth control and progressive difficulty.
+2. **User Interface**: The interface was found to be clear and easy to navigate.
+3. **Graphics and Sound**: Testers enjoyed the game's graphics and sound design, adding to the overall enjoyment.
+4. **Performance**: No significant performance issues were reported.
+5. **Overall Experience**: The game was highly rated in terms of enjoyment and engagement.
+6. **Accessibility**: While the game was well-received, there were recommendations for enhancing accessibility features to cater to a broader range of players.
+
+### Conclusion
+The user testing for Snake Game provided valuable insights into the game's strengths and areas for improvement. [Summarize any overarching conclusions or recommendations based on the testing.]
+
+### Next Steps for Accessibility Improvements
+Based on user feedback, the following accessibility improvements will be implemented:
+- **Adjustable Font Sizes**: Implementing options to adjust in-game text sizes for better readability.
+- **Color Blind Modes**: Introducing color schemes suitable for color-blind players.
+- **Audio Descriptions**: Adding descriptive audio for key visual elements and menus for visually impaired players.
+- **Customizable Controls**: Allowing players to remap controls for better personalization and comfort.
+- **Subtitles and Captions**: Incorporating subtitles and captions for all audio elements for hearing-impaired players.
 </details>
