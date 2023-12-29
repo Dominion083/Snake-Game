@@ -13,7 +13,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.9.2</junit.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
@@ -21,55 +20,29 @@
             <version>1.0.1.4</version>
         </dependency>
         <dependency>
-            <groupId>eu.hansolo.fx</groupId>
-            <artifactId>heatmap</artifactId>
-            <version>17.0.21</version>
-        </dependency>
-        <dependency>
-            <groupId>eu.hansolo.fx</groupId>
-            <artifactId>countries</artifactId>
-            <version>17.0.23</version>
-        </dependency>
-        <dependency>
-            <groupId>eu.hansolo</groupId>
-            <artifactId>toolbox</artifactId>
-            <version>17.0.26</version>
-
-        </dependency>
-        <dependency>
-            <groupId>eu.hansolo</groupId>
-            <artifactId>toolbox</artifactId>
-            <version>17.0.26</version>
-        </dependency>
-        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
             <version>20.0.2</version>
         </dependency>
         <dependency>
-            <groupId>eu.hansolo</groupId>
-            <artifactId>toolboxfx</artifactId>
-            <version>17.0.41</version>
-        </dependency>
-        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>21-ea+24</version>
+            <version>20.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>21-ea+24</version>
+            <version>20.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>21-ea+24</version>
+            <version>20.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
-            <version>21-ea+24</version>
+            <version>20.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.controlsfx</groupId>
@@ -99,16 +72,6 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-javafx</artifactId>
-            <version>12.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kordamp.bootstrapfx</groupId>
-            <artifactId>bootstrapfx-core</artifactId>
-            <version>0.4.0</version>
-        </dependency>
-        <dependency>
             <groupId>eu.hansolo</groupId>
             <artifactId>tilesfx</artifactId>
             <version>17.1.17</version>
@@ -120,15 +83,14 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.github.almasb</groupId>
-            <artifactId>fxgl</artifactId>
-            <version>17.2</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.openjfx</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

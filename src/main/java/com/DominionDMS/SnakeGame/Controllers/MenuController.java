@@ -16,7 +16,13 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
-
+/**
+ * The MenuController class handles the functionality of the main menu in the Snake Game.
+ * It manages the interactions with various UI components such as buttons, text fields, and radio buttons,
+ * allowing the user to configure game settings like sound, difficulty level, and theme.
+ *
+ * @author Dominion Aromolaran
+ */
 public class MenuController {
         @FXML
         private Button Start;
@@ -50,7 +56,12 @@ public class MenuController {
         private MenuItem Halloween;
         static GameModel gameModel;
         static GameController controller;
-
+        /**
+         * Initializes the MenuController with a GameController and GameModel.
+         *
+         * @param controller The game controller to interact with.
+         * @param model      The model representing game settings.
+         */
         @FXML
         public static void initialise(GameController controller, GameModel model) {
             MenuController.controller = controller;
@@ -58,8 +69,13 @@ public class MenuController {
 
 
         }
+        /**
+         * Sets up the game based on the user input and game settings.
+         *
+         * @throws IOException If there is an error during game setup.
+         */
         @FXML
-        private void gameSetup() {
+        private void gameSetup() throws IOException {
             if (nameText.getText().trim().isEmpty()) {
                 // Display a warning dialog if the name is not entered
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -90,6 +106,11 @@ public class MenuController {
                 }
             }
         }
+        /**
+         * Handles the change of sound settings based on user interaction.
+         *
+         * @param event The action event triggered by the user.
+         */
         @FXML
         private void changeSound(ActionEvent event) {
             if (Sound.isSelected()) {
@@ -102,6 +123,11 @@ public class MenuController {
                controller.stopMusic();
             }
         }
+        /**
+         * Handles the change of sound effects settings based on user interaction.
+         *
+         * @param event The action event triggered by the user.
+         */
         @FXML
         private void changeSoundEffects(ActionEvent event) {
             if (SoundEffects.isSelected()) {
@@ -112,6 +138,12 @@ public class MenuController {
                 gameModel.setEffects(false);
             }
         }
+        /**
+         * Initializes the leaderboard view.
+         *
+         * @param event The action event triggered by the user.
+         * @throws IOException If there is an error loading the leaderboard.
+         */
         @FXML
         private void initialiseLeaderboard(ActionEvent event) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("/FXML/HighScores.fxml"));
@@ -120,7 +152,11 @@ public class MenuController {
             stage.setScene(scene);
         }
 
-
+        /**
+         * Changes the game theme based on user selection.
+         *
+         * @param event The action event triggered by the user.
+         */
         @FXML
         private void changeTheme(ActionEvent event) {
             if( event.getSource() == Summer ){
@@ -139,6 +175,11 @@ public class MenuController {
             }
 
         }
+        /**
+         * Changes the game level/difficulty based on user selection.
+         *
+         * @param event The action event triggered by the user.
+         */
         @FXML
         private void changeLevel(ActionEvent event) {
             if( event.getSource() == Beginner ){
@@ -158,11 +199,18 @@ public class MenuController {
 
         }
 
+
+     /**
+     * Exits the game.
+     */
     @FXML
     private void exit() {
      controller.exit();
     }
 
+    /**
+     * Allows the user to send a report via email.
+     */
     @FXML
     private void report() {
         try {
@@ -174,6 +222,4 @@ public class MenuController {
     }
 
 
-
-
-    }
+}

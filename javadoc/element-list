@@ -1,0 +1,6 @@
+module:com.DominionDMS.SnakeGame
+com.DominionDMS.SnakeGame.Application
+com.DominionDMS.SnakeGame.Controllers
+com.DominionDMS.SnakeGame.Model
+com.DominionDMS.SnakeGame.Utils
+com.DominionDMS.SnakeGame.View

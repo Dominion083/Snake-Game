@@ -29,6 +29,13 @@ import javafx.util.Duration;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * This class represents the visual aspect of the Snake game. It handles the rendering
+ * of the game components such as the snake, food, bombs, and the game environment.
+ * It also manages the pause button ,pause and end game menus.
+ *
+ * @author Dominion Aromolaran-modified(Play and GameFrame)
+ */
 
 public class GameView extends Pane {
 	private static final int VBOX_SPACING = 10;
@@ -45,22 +52,26 @@ public class GameView extends Pane {
 	private Button pauseButton;
 	private FoodModel foodModel;
 	private Image background;
-
 	private Image fail;
 	private Image boom;
 	private Image body;
 	private Image bombImage;
 	private ImageView explosionView;
 	private BombModel bombs;
-
 	private Image imgSnakeHead ;
 	private Image newimgSnakeHead;
 	private VBox pauseMenu;
-
 	private VBox endMenu;
 	private int level;
 
 
+	/**
+	 * Initializes the game view with necessary components and models.
+	 *
+	 * @param controller The game controller.
+	 * @param fmodel The food model.
+	 * @param smodel The snake model.
+	 */
 	public void initialise(GameController controller, FoodModel fmodel, SnakeModel smodel) {
 		this.controller = controller;
 		this.foodModel = fmodel;
@@ -97,6 +108,7 @@ public class GameView extends Pane {
 		mainMenuButton.setOnAction(event -> {
 			try {
 				pauseMenu.setVisible(false);
+				controller.resetGame();
 				Stage stage = (Stage) mainMenuButton.getScene().getWindow();
 				controller.mainMenu(stage);
 			} catch (IOException e) {
@@ -122,15 +134,19 @@ public class GameView extends Pane {
 		replayButton.setOnAction(event -> {
 			endMenu.setVisible(false);
 			Stage stage = (Stage) replayButton.getScene().getWindow();
-			controller.replay(stage);
+			try {
+				controller.replay(stage);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 		});
 		exitButton1.setOnAction(event -> {
 			controller.exit();
 
 		});
 		mainMenuButton1.setOnAction(event -> {
+			endMenu.setVisible(false);
 			try {
-				endMenu.setVisible(false);
 				Stage stage = (Stage) mainMenuButton1.getScene().getWindow();
 				controller.mainMenu(stage);
 
@@ -141,15 +157,16 @@ public class GameView extends Pane {
 		});
 	    leaderBoardButton.setOnAction(event -> {
 			endMenu.setVisible(false);
-			FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("/FXML/HighScores.fxml"));
-			Scene scene = null;
+
 			try {
-				scene = new Scene(fxmlLoader.load());
+				FXMLLoader fxmlLoader = new FXMLLoader(SnakeGame.class.getResource("/FXML/HighScores.fxml"));
+				Scene scene = new Scene(fxmlLoader.load());
+				Stage stage = (Stage) leaderBoardButton.getScene().getWindow();
+				stage.setScene(scene);
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
-			Stage stage = (Stage) replayButton.getScene().getWindow();
-			stage.setScene(scene);
+
 
 		});
 		endMenu.setLayoutX((double) Constants.GAME_WIDTH / 2 - 100); // Adjust as necessary
@@ -171,11 +188,44 @@ public class GameView extends Pane {
 		getChildren().addAll(canvas,explosionView,pauseButton,pauseMenu,endMenu);
 		pauseButton.setFocusTraversable(false);
 
-
-
-
-
 	}
+	/**
+	 * Retrieves the current image of the snake's head.
+	 *
+	 * @return The Image object representing the snake's head.
+	 */
+	public Image getSnakeHead(){
+		return imgSnakeHead;
+	}
+
+	/**
+	 * Sets a new image for the snake's head.
+	 *
+	 * @param image The new Image object for the snake's head.
+	 */
+	public void setSnakeHead(Image image){
+		newimgSnakeHead = image;
+	}
+
+	/**
+	 * Resets the image of the snake's head to the original image.
+	 */
+	public void resetHead(){
+		newimgSnakeHead = imgSnakeHead;
+	}
+
+
+	/**
+	 * Retrieves the bomb model used in the game.
+	 *
+	 * @return The bomb model.
+	 */
+	public BombModel getBombs(){
+		return bombs;
+	}
+	/**
+	 * Sets up the game view for theme 1(Summer), including background and snake images.
+	 */
 	public void setUpTheme1() {
 		this.background = GameImageLoader.getImages().get("background1");
 		this.body = GameImageLoader.getImages().get("snake-body1");
@@ -183,6 +233,9 @@ public class GameView extends Pane {
 		refocus();
 
 	}
+	/**
+	 * Sets up the game view for theme 2(Christmas), including background and snake images.
+	 */
 	public void setUpTheme2() {
 
 			this.background = GameImageLoader.getImages().get("background2");
@@ -191,6 +244,9 @@ public class GameView extends Pane {
 			refocus();
 
 	}
+	/**
+	 * Sets up the game view for theme 3(Halloween), including background and snake images.
+	 */
 	public void setUpTheme3() {
 
 		this.background = GameImageLoader.getImages().get("background3");
@@ -199,30 +255,41 @@ public class GameView extends Pane {
 		refocus();
 
 	}
+	/**
+	 * Sets up the game environment for level 1. This level does not include bombs.
+	 * The method also calls refocus to ensure the UI elements are properly aligned.
+	 */
 	public void setUpLevel1(){
-
+        bombs= null;
 		this.level = 1;
 		refocus();
 	}
+	/**
+	 * Sets up the game environment for level 2. This level includes a predefined number
+	 * of bombs as specified in Constants.LEVEL2_BOMB_NUM.
+	 * The method also calls refocus to ensure the UI elements are properly aligned.
+	 */
 	public void setUpLevel2(){
 
 		bombs = new BombModel(Constants.LEVEL2_BOMB_NUM);
 		this.level = 2;
 		refocus();
 	}
+	/**
+	 * Sets up the game environment for level 3. This level includes a higher number
+	 * of bombs as specified in Constants.LEVEL3_BOMB_NUM for increased difficulty.
+	 * The method also calls refocus to ensure the UI elements are properly aligned.
+	 */
 	public void setUpLevel3(){
 
 		bombs = new BombModel(Constants.LEVEL3_BOMB_NUM);
 		this.level = 3;
 		refocus();
 	}
-	public BombModel getBombs(){
-		return bombs;
-	}
 
-
-
-
+	/**
+	 * Refocuses the game view to handle user input and updates visuals.
+	 */
 	public void refocus(){
 		pauseButton.setVisible(true);
 		newimgSnakeHead = imgSnakeHead;
@@ -230,6 +297,13 @@ public class GameView extends Pane {
 		setFocusTraversable(true);
 
 	}
+	/**
+	 * Creates a styled button with specified text. The button is styled with a black background,
+	 * white text color, Arial font, and set dimensions based on class constants.
+	 *
+	 * @param text The text to display on the button.
+	 * @return Button A newly created Button with specified styles and text.
+	 */
 
 	private Button createStyledButton(String text) {
 		Button button = new Button(text);
@@ -241,25 +315,13 @@ public class GameView extends Pane {
 		return button;
 	}
 
-	public Image getSnakeHead(){
-		return imgSnakeHead;
-	}
-	public VBox getPauseMenu(){
-		return pauseMenu;
-	}
-	public VBox getEndMenu(){
-		return endMenu;
-	}
-	public void setSnakeHead(Image image){
-		newimgSnakeHead = image;
-	}
-	public void resetHead(){
-		newimgSnakeHead = imgSnakeHead;
-	}
-	public Image getSnakeBody(){
-		return body;
-	}
 
+
+	/**
+	 * Paints the game components on the canvas, including the snake, food, and bombs.
+	 *
+	 * @param alive Boolean indicating if the snake is alive.
+	 */
 	public void paint(boolean alive) {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		if (alive) {
@@ -272,7 +334,11 @@ public class GameView extends Pane {
 			handleGameOver(gc);
 		}
 	}
-
+	/**
+	 * Handles the game over scenario, displaying the explosion and the end screen.
+	 *
+	 * @param gc The graphics context for drawing on the canvas.
+	 */
 	private void handleGameOver(GraphicsContext gc) {
 		int x = controller.adjustXWithinBounds(snakeModel.getxPosition());
 		int y = controller.adjustYWithinBounds(snakeModel.getyPosition());
@@ -285,6 +351,11 @@ public class GameView extends Pane {
 		pause.setOnFinished(event -> showEndScreen(gc));
 		pause.play();
 	}
+	/**
+	 * Shows the end screen ad sets the endMenu, pauseButton and explosionView as false.
+	 *
+	 * @param gc The graphics context for drawing on the canvas.
+	 */
 	private void showEndScreen(GraphicsContext gc) {
 		gc.drawImage(fail,0,0,canvas.getWidth(),canvas.getHeight());
 		pauseButton.setVisible(false);
@@ -293,7 +364,11 @@ public class GameView extends Pane {
 
 
 	}
-
+	/**
+	 * Draws the snake on the canvas based on its current position and state.
+	 *
+	 * @param gc The graphics context for drawing on the canvas.
+	 */
 	public void drawSnake(GraphicsContext gc) {
 		controller.isSnakeAlive();
 		int x = snakeModel.getxPosition();
@@ -304,19 +379,35 @@ public class GameView extends Pane {
 		drawBody(gc);
 		controller.move();
 	}
-
+	/**
+	 * Manages the body of the snake, updating its position as the snake moves.
+	 *
+	 * @param x The x-coordinate of the snake's head.
+	 * @param y The y-coordinate of the snake's head.
+	 */
 	private void manageSnakeBody(int x, int y) {
 		snakeModel.getBodyPoints().add(new Point(x, y));
 		if (snakeModel.getBodyPoints().size() == (snakeModel.getLength() + 1) * snakeModel.getBodyNum()) {
 			snakeModel.getBodyPoints().remove(0);
 		}
 	}
+	/**
+	 * Draws bombs on the game canvas. This method iterates through the bomb list and
+	 * renders each bomb at its respective position on the game field.
+	 *
+	 * @param gc GraphicsContext for drawing on the canvas.
+	 */
 	public void drawBombs(GraphicsContext gc) {
 		for (BombModel.Bomb bomb : bombs.getBombs()) {
 			Point position = bomb.getPosition();
 			gc.drawImage(bombImage, position.x, position.y);
 		}
 	}
+	/**
+	 * Draws the snake's body on the game canvas. The method renders each segment of the snake's body.
+	 *
+	 * @param gc GraphicsContext for drawing on the canvas.
+	 */
 	private void drawBody(GraphicsContext gc) {
 		int length = snakeModel.getBodyPoints().size() - 1 - snakeModel.getBodyNum();
 
@@ -326,22 +417,26 @@ public class GameView extends Pane {
 			gc.drawImage(body, point.x, point.y);
 		}
 	}
+	/**
+	 * Draws an image on the canvas at the specified x and y coordinates.
+	 *
+	 * @param image The image to be drawn.
+	 * @param x     The x-coordinate on the canvas where the image will be placed.
+	 * @param y     The y-coordinate on the canvas where the image will be placed.
+	 */
 	public void draw(Image image, int x, int y){
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(image, x, y);
-	};
+	}
+	/**
+	 * Renders the current score of the snake model on the game canvas.
+	 *
+	 * @param snakeModel The snake model containing the current score to be displayed.
+	 */
 	public void drawScore(SnakeModel snakeModel) {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.setFont(Font.font("SansSerif", FontWeight.BOLD, 30));
 		gc.setFill(Color.MAGENTA);
 		gc.fillText("SCORE : " + snakeModel.getScore(), Constants.SNAKE_SCORE_X, Constants.SNAKE_SCORE_Y);
 	}
-
-
-
-
-
-
-
-
 }

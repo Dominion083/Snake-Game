@@ -5,21 +5,31 @@ import javafx.scene.image.Image;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * The GameImageLoader class is responsible for loading and storing all the images used in the Snake Game.
+ * It loads images for the snake, animations, objects, and food items from specified file paths and stores them
+ * in a map for easy retrieval. This class ensures that images are only loaded once and are available throughout
+ * the game whenever required.
+ *
+ * @author Dominion Aromolaran-modified(ImageUtil)
+ */
 public class GameImageLoader {
 	private static final Map<String, Image> IMAGES = new HashMap<>();
 
+	// Static initializer block to load images
 	static {
 		loadImages();
 	}
-
+	/**
+	 * Loads images into the IMAGES map. This method is called statically to initialize all game images.
+	 */
 	private static void loadImages() {
 		// snake
 		IMAGES.put("snake-head1", GameImageUtil.getImage("/images/Snake/snake-head1.png"));
-		IMAGES.put("snake-head2", GameImageUtil.getImage("/images/Snake/snake-head2.png"));
-		IMAGES.put("snake-head3", GameImageUtil.getImage("/images/Snake/snake-head3.png"));
+		IMAGES.put("snake-head2", GameImageUtil.getImage("/images/Snake/snake-head3.png"));
+		IMAGES.put("snake-head3", GameImageUtil.getImage("/images/Snake/snake-head2.png"));
 		IMAGES.put("snake-body1", GameImageUtil.getImage("/images/Snake/snake-body1.png"));
-		IMAGES.put("snake-body2", GameImageUtil.getImage("/images/Snake/snake-body2.png"));
+		IMAGES.put("snake-body2", GameImageUtil.getImage("/images/Snake/snake-body3.png"));
 		IMAGES.put("snake-body3", GameImageUtil.getImage("/images/Snake/snake-body2.png"));
 		IMAGES.put("snake-icon", GameImageUtil.getImage("/images/Objects/snake-logo.png"));
 		//animation and objects
@@ -51,6 +61,11 @@ public class GameImageLoader {
 	}
 
 
+	/**
+	 * Provides access to the loaded images. Returns an unmodifiable map of image names to Image objects.
+	 *
+	 * @return An unmodifiable view of the IMAGES map, containing all loaded images.
+	 */
 	public static Map<String, Image> getImages() {
 		return Collections.unmodifiableMap(IMAGES);
 	}
