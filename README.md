@@ -206,7 +206,106 @@
 <details>
 <summary>Testing</summary>
 
-### Overview
+### Unit Testing
+
+#### Test Cases for FoodModel(Passed)
+
+1. **testFoodInitialisationWithoutBombs**:
+   - Ensures that food is initialized within game boundaries when no bombs are present.
+2. **testFoodInitialisationWithBombs**:
+   - Verifies that food is placed within game boundaries and does not overlap with bombs.
+
+3. **testFoodNotEatenInitially**:
+   - Confirms that food is not marked as eaten right after initialization.
+
+4. **testSetEaten**:
+   - Checks if the food can be correctly marked as eaten.
+
+5. **testSetPoints**:
+   - Ensures that the points value is set correctly and retrieved accurately.
+
+6. **testGetRectangle**:
+   - Tests whether a non-null bounding rectangle is returned post food initialization.
+
+7. **testFoodRegeneration**:
+   - Validates that the food regenerates at a new location after being eaten.
+
+8. **testFoodImageNotNull**:
+   - Confirms that the image for food is not null after initialization.
+
+9. **testFoodWithinGameBoundaries**:
+   - Verifies that the food's position is always within the game's set boundaries.
+
+10. **testFoodNotInScoreArea**:
+- Ensures that food does not appear in the designated score area of the game.
+
+
+#### Test Cases for GameController(All Passed)
+
+1. **testSnakeMovement**:
+   - Validates that the snake's X position changes after movement, ensuring that the snake can move properly in the game environment.
+
+2. **testSnakeEatsFood**:
+   - Tests the scenario where the snake eats food. It verifies that the `isEaten` property of food is set to `true` when the snake intersects with it, and the snake's score increases accordingly.
+
+3. **testGamePauseAndResume**:
+   - Checks the functionality of pausing and resuming the game. This test ensures that the game can be paused and later resumed without issues.
+
+4. **testGameOver**:
+   - Simulates a game-over condition by setting the snake's alive status to `false`. It then checks if the game correctly recognizes the game-over state.
+
+5. **testResetGame**:
+   - Verifies the game reset functionality by ensuring that the snake and food objects are reset to their initial positions and states.
+
+These tests are crucial for assessing the `GameController`'s functionality, covering key aspects like movement, eating mechanics, game pause/resume, game-over handling, and resetting the game. Each test ensures that the controller responds correctly to different game situations, contributing to a reliable and consistent gaming experience.
+
+#### Test Cases for GameModel(All Passed)
+
+1. **testInitialLevel**:
+   - Verifies that the initial level is set to 0 upon creation of a new `GameModel` instance.
+
+2. **testSetAndGetLevel**:
+   - Ensures that setting a level works correctly and the same value is retrieved.
+
+3. **testInitialTheme**:
+   - Confirms that the initial theme is set to 0 when a new `GameModel` is instantiated.
+
+4. **testSetAndGetTheme**:
+   - Checks if the theme can be set correctly and validates the getter method.
+
+5. **testInitialEffectsStatus**:
+   - Asserts that the default status for effects is true in a new `GameModel` object.
+
+6. **testSetAndGetEffectsStatus**:
+   - Tests if the effects status can be toggled and retrieved accurately.
+
+7. **testSetAndGetName**:
+   - Confirms that the player's name is set correctly and can be retrieved.
+
+#### Test Cases for GameModel(All Passed)
+
+1. **testInitialLevel**:
+   - Verifies that the initial level is set to 0 upon creation of a new `GameModel` instance.
+
+2. **testSetAndGetLevel**:
+   - Ensures that setting a level works correctly and the same value is retrieved.
+
+3. **testInitialTheme**:
+   - Confirms that the initial theme is set to 0 when a new `GameModel` is instantiated.
+
+4. **testSetAndGetTheme**:
+   - Checks if the theme can be set correctly and validates the getter method.
+
+5. **testInitialEffectsStatus**:
+   - Asserts that the default status for effects is true in a new `GameModel` object.
+
+6. **testSetAndGetEffectsStatus**:
+   - Tests if the effects status can be toggled and retrieved accurately.
+
+7. **testSetAndGetName**:
+   - Confirms that the player's name is set correctly and can be retrieved.
+
+### User Testing
 This document summarizes the results of user testing conducted for the Snake Game application. The tests focused on evaluating the game's usability, functionality, and overall player experience.
 
 ### Test Summary
