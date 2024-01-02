@@ -144,7 +144,6 @@ public class GameController
 				break;
 			case 2:
 				view.setUpTheme2();
-				;
 				break;
 			case 3:
 				view.setUpTheme3();
@@ -346,6 +345,7 @@ public class GameController
 	 * Pauses the game loop and displays the pause menu.
 	 */
 	public void pause(){
+		view.pauseMenu(true);
 		gameLoopTimer.stop();
 
 	}
@@ -354,6 +354,7 @@ public class GameController
 	 */
 	public void resume(){
 		gameLoopTimer.start();
+
 	}
 
 	/**

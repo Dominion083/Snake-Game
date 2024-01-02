@@ -76,6 +76,9 @@ public class GameView extends Pane {
 		this.controller = controller;
 		this.foodModel = fmodel;
 		this.snakeModel = smodel;
+
+
+
 		pauseButton = new Button("||"); // Use a symbol or text for pause
 		pauseButton.setFont(Font.font("SansSerif", FontWeight.BOLD, 24));// A color that doesn't interfere much
 		pauseButton.setBackground(null); // Make the background of the button transparent
@@ -222,6 +225,10 @@ public class GameView extends Pane {
 	 */
 	public BombModel getBombs(){
 		return bombs;
+	}
+
+	public void pauseMenu(boolean x){
+		pauseMenu.setVisible(x);
 	}
 	/**
 	 * Sets up the game view for theme 1(Summer), including background and snake images.
