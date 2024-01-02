@@ -179,7 +179,7 @@
 
 ## IntelliJ Generated Class Diagram:![Generated Class diagram](/Documentation/AutoClassDiagram.png)
 
-## My Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiagr.png)
+## My Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiagram.png)
 
 ## My Original Activity Diagram:![Original Activity Diagram](/Documentation/OriginalActivityDIagram.png)
 
@@ -187,6 +187,7 @@
 
 ## Multiplayer UseCase Diagram:![Use case diagram](/Documentation/Use-Case.png)
 
+## My Final Class Diagram:![Final Class Diagram](/Documentation/FinalClassDiagram.png)
 </details>
 
 <details>
