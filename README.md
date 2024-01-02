@@ -179,15 +179,17 @@
 
 ## IntelliJ Generated Class Diagram:![Generated Class diagram](/Documentation/AutoClassDiagram.png)
 
-## My Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiagram.png)
+## Original Class Diagram:![Original Class Diagram](/Documentation/InitialClassDiagram.png)
 
-## My Original Activity Diagram:![Original Activity Diagram](/Documentation/OriginalActivityDIagram.png)
+## Original Activity Diagram:![Original Activity Diagram](/Documentation/OriginalActivityDIagram.png)
 
 ## MVC Initial Class Diagram:![MVC diagram](/Documentation/PossibleClassDiag.png)
 
 ## Multiplayer UseCase Diagram:![Use case diagram](/Documentation/Use-Case.png)
 
-## My Final Class Diagram:![Final Class Diagram](/Documentation/FinalClassDiagram.png)
+## Final Class Diagram:![Final Class Diagram](/Documentation/FinalClassDiagram.png)
+
+## Final Sequence Diagram:![Final Sequence Diagram](/Documentation/FinalSequenceDiagram.png)
 </details>
 
 <details>
