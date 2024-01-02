@@ -42,14 +42,16 @@ public class FoodModel  {
 				this.x = random.nextInt(Constants.GAME_WIDTH - width);
 				this.y = random.nextInt(Constants.GAME_HEIGHT - height);
 				// Adjust for score area, if needed
-			} while(x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND ||( (x>= Constants.PAUSE_X && y <= (Constants.PAUSE_Y + height))));
+			} while(x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND ||
+					( (x>= Constants.PAUSE_X && y <= (Constants.PAUSE_Y + height))));
 		}
 		else {
 			do {
 				this.x = random.nextInt(Constants.GAME_WIDTH - width);
 				this.y = random.nextInt(Constants.GAME_HEIGHT - height);
 				// Adjust for score area, if needed
-			} while (bombs.overlapsWithBomb(x, y) || (x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND));
+			} while (bombs.overlapsWithBomb(x, y) || (x < Constants.SNAKE_SCORE_XEND
+					&& y < Constants.SNAKE_SCORE_YEND));
 		}
 	}
 	/**

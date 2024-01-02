@@ -42,7 +42,8 @@ public class BombModel {
             do {
                 this.x = random.nextInt(maxWidth);
                 this.y = random.nextInt(maxHeight);
-            }while((x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND) ||  (x>= Constants.PAUSE_X && y <= (Constants.PAUSE_Y + height)));
+            }while((x < Constants.SNAKE_SCORE_XEND && y < Constants.SNAKE_SCORE_YEND)
+                    ||  (x>= Constants.PAUSE_X && y <= (Constants.PAUSE_Y + height)));
             bombs.add(new Bomb(x, y));
         }
     }

@@ -278,7 +278,8 @@ public class GameController
 	public void checkBombCollision() {
 		if (snakeModel.getLength() > 1) {
 			for (BombModel.Bomb bomb : view.getBombs().getBombs()) {
-				if (snakeModel.getRectangle().intersects(bomb.getRectangle()) && snakeModel.isAlive()) {
+				if (snakeModel.getRectangle().intersects(bomb.getRectangle())
+						&& snakeModel.isAlive()) {
 					snakeModel.setAlive(false);
 					break;
 				}
