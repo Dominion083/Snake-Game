@@ -82,8 +82,6 @@ public class HighScoreController {
         leaderboard.addScore(newEntry);
 
         // Check if the leaderboard has more than 10 entries and trim if necessary
-
-
         // Write the (potentially updated) top scores to the file
         try {
             leaderboard.writeScoresToFile(filePath);

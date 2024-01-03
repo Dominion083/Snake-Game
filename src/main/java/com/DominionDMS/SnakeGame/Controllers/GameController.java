@@ -72,6 +72,7 @@ public class GameController
 	 * @throws IOException if an error occurs during game setup.
 	 */
 	public void startGameLoop(Stage stage,boolean replay) throws IOException {
+		view.resetHead();
 		direction = Direction.RIGHT;
 		if (!replay){
 			setTheme(gamemodel.getTheme());
@@ -363,7 +364,6 @@ public class GameController
 	 */
 	public void resetGame(){
         snakeModel.initialise(Constants.SNAKE_START_X,Constants.SNAKE_START_Y);
-		view.resetHead();
 	}
 
 	/**
