@@ -36,3 +36,12 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+pom.xml
+
+#Documenatation
+Documenatation/
