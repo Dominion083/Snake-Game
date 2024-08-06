@@ -43,7 +43,7 @@
 ### Credits
 **Graphics:**
 
- - Winter and Halloween Theme background used under license from **ShutterStock(())**.
+ - Winter and Halloween Theme background used under license from **ShutterStock**.
 
  - Christmas Theme Body and End screen sourced from **ChatGPT**.
 
